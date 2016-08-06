@@ -1,0 +1,149 @@
+<div ng-controller="productoController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div class="col s12 ">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="font-menu">Registrar Productos</a></li>
+			</ul>
+		</div>
+		<div id="regis" class="col s12">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<div class="fixed-action-btn" >
+					<a class="btn-floating btn-large waves-effect waves-light teal" style="float: left;" ng-click="nuevo()" title="Guardar"><i class="material-icons">add</i></a>	
+				</div>
+                <table class="striped responsive-table" ng-table="tableParams">
+                    <tr ng-repeat="producto in $data | filter: filtro">
+                        <td title="'IMAGEN'">
+                            <img class="circle responsive-img" src="{{producto.imagen}}" width="30">
+                        </td>
+                        <td title="'MATERIA'">
+                            {{producto.materia}}
+                        </td>
+                        <td title="'PRODUCTO'">
+                            {{producto.nombre}}
+                        </td>
+                        <td title="'VALOR'">
+                            {{producto.valor | currency}}
+                        </td>
+                        <td title="'ESTADO'">
+                            <span ng-if="producto.estado == 'ACTIVO'">
+                                <p style="color: green;">{{producto.estado}}</p>
+                            </span>
+                            <span ng-if="producto.estado == 'INACTIVO'">
+                                <p style="color: red;">{{producto.estado}}</p>
+                            </span>
+                        </td>
+                        <td title="'OPCIONES'">
+                            <center>
+                                <a href="" ng-click="get(producto)">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                </a>
+                                <span ng-if="producto.estado == 'ACTIVO'">
+                                    <a href="" ng-click="cambiarestado(producto)">
+                                        <i class="material-icons prefix">done</i>
+                                    </a>
+                                </span>
+                                <span ng-if="producto.estado == 'INACTIVO'">
+                                    <a href="" ng-click="cambiarestado(producto)">
+                                        <i class="material-icons prefix">clear</i>
+                                    </a>
+                                </span>
+                            </center>
+                        </td>
+                    </tr>
+                </table><br><br>
+			</div>
+		</div>
+		<div id="modal1" class="modal modal-fixed-footer">
+    		<div class="modal-content">
+      			<center><h5>{{title}}</h5></center>
+      			<div class="row">
+      				<div class="col s4">
+                        <div id="image" style="width: 98%; height: 150px; top: 2em;">
+                            
+                        </div>
+                        <a id="cambiar" ng-click="modificarImagen()" hidden style="display: none" href="javascript:;" class="btn col s12 red">Cambiar</a>
+                    
+                        <div class="file-field input-field col s4" style="top: 1em; margin-left: 20px">
+                            <div class="btn col s12">
+                                  <span><i class="material-icons">photo_camera</i></span>
+                                  <input id="files" uploader-model="producto.imagen" type="file" style="padding-left: 5%">
+                            </div>
+                            <div class="file-path-wrapper">
+                              <!--<input class="file-path validate" type="text">-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-field col s6">
+						<input type="text" maxlength="20" name="usuario" ng-model="producto.nombre">
+						<label class="{{active}}">Producto</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" maxlength="20" name="usuario" ng-model="producto.valor">
+						<label class="{{active}}">Valor</label>
+					</div>
+					<div class="input-field col s6">
+						<select id="" class="browser-default" ng-click="selecionar()" name="marca">
+							<option selected disabled>Seleccionar</option>
+							<option ng-repeat="materia in arrayMateria" value="{{materia.id}}" ng-model="producto.materia">
+								{{materia.nombre}}
+							</option>
+						</select>
+					</div>
+      			</div>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="guardarproducto()" ng-hide="editMode">Guardar</a>
+      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-show="editMode" ng-click="modificar();">Actualizar</a>
+    		</div>
+  		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+    	$('.tooltipped').tooltip({delay: 50});
+  	});
+  	function archivo(evt) {
+        var files = evt.target.files; // FileList object
+
+        //Obtenemos la imagen del campo "file". 
+        for (var i = 0, f; f = files[i]; i++) {
+            //Solo admitimos imágenes.
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    // Creamos la imagen.
+                    document.getElementById("image").innerHTML = ['<img class="thumb" style="height:70px;" src="', e.target.result, '" title="', escape(theFile.name), '"/>'].join('');
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        }
+    }
+
+    document.getElementById('files').addEventListener('change', archivo, false);
+
+    $(':file').change(function(){
+        //obtenemos un array con los datos del archivo
+        var file = $("#files")[0].files[0];
+        //obtenemos el nombre del archivo
+        var fileName = file.name;
+        //obtenemos la extensión del archivo
+        //document.getElementById("nombreImagen").value=fileName;
+        fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        //obtenemos el tamaño del archivo
+        var fileSize = file.size;
+        //obtenemos el tipo de archivo image/png ejemplo
+        var fileType = file.type;
+        
+        $("#cambiar").show();
+        //mensaje con la información del archivo
+        // alert("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
+    });
+</script>

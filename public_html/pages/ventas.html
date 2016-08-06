@@ -1,0 +1,74 @@
+<div ng-controller="ventasController">
+	<div class="row">
+        <div class="col s12 m12 l6" style="margin-left: 200px;">
+			<ul style="margin-left: 100px" class="collapsible" data-collapsible="accordion">
+			    <li ng-click="loadproducto(1)">
+			      	<div class="collapsible-header">
+			      		<img src="http://artesano.gpsarduino.com/public_html/images/almuerzos.png" width="30" class="collapse-header">Almuerzos
+			      	</div>
+			      	<div class="collapsible-body">
+                        <div class="row">
+                            <span ng-repeat="producto in arrayProducto">
+                                <div class="col s3">
+                                    <center><img style="padding-top: 5px;" src="{{producto.imagen}}" width="90" height="90"></center>
+                                    <p style="float: left; color: green;">{{producto.nombre}}</p>
+                                </div>
+                            </span>
+                        </div>    
+                    </div>
+			    </li>
+    			<li>
+      				<div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/bebidas.png" width="30" class="collapse-header">Bebidas
+                    </div>
+      				<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    			</li>
+    			<li>
+      				<div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/comidasrapidas.png" width="30" class="collapse-header">Comidas Rapidas
+                    </div>
+      				<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+    			</li>
+                <li>
+                    <div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/postres.png" width="30" class="collapse-header">Postres
+                    </div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/tienda.png" width="30" class="collapse-header">Tienda
+                    </div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/desayuno.png" width="30" class="collapse-header">Desayunos
+                    </div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <img src="http://artesano.gpsarduino.com/public_html/images/ensalada.png" width="30" class="collapse-header">Ensaladas
+                    </div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                </li>
+  			</ul>
+		</div>
+        <div class="col s12 m12 l4">
+            <div class="card">
+                <div class="card-content">
+                    <center><p>FACTURA DE COMPRA</p></center>    
+                </div>
+            </div>
+        </div>
+	</div>
+
+</div>
+<script>
+	$(document).ready(function(){
+    	$('.collapsible').collapsible({
+      		accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    	});
+  	});
+</script>

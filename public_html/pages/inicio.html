@@ -1,0 +1,188 @@
+<div ng-controller="inicioController" style="margin-left: 120px">
+	
+	<div class="row container" style="margin-top: 70px">
+	
+		<div class="col s12 ">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="active font-menu" href="#test1">Registrar Empleado</a></li>
+				<li class="tab col s3"><a class="font-menu" href="#test2">Lista Usuarios</a></li>
+			</ul>
+		</div>	
+	
+	
+		<!-- Registrar empleados -->
+		<div id="test1" class="col s12">
+			<div style="background-color: #FFF;height: 520px;" >
+				<div class="divider"></div><br>
+				<form class="col s12" novalidate name="formUsuario">
+					<div class="row">
+						<div class="input-field col s5">
+							<input type="text" maxlength="40" name="nombres" ng-model="user.nombre_apellido" required ng-pattern="/^[A-Za-záéíóúñ]{3,}/">
+							<label class="{{active}}">Nombre Apellido Completo</label>
+							<div class="error" ng-show="formUsuario.nombres.$dirty && formUsuario.nombres.$invalid">
+	                            <small ng-show="formUsuario.nombres.$error.required">Nombre es Requerido</small>                                    
+	                            <small  ng-show="formUsuario.nombres.$error.pattern">Formato No Valido</small>
+	                        </div>
+						</div>
+						<div class="input-field col s3">
+							<input type="text" maxlength="10" name="telefono" ng-model="user.celular" required ng-pattern="/^[0-9]{6,20}$/">
+							<label class="{{active}}">Celular</label>
+							<div class="error" ng-show="formUsuario.telefono.$dirty && formUsuario.telefono.$invalid">
+                                <small ng-show="formUsuario.telefono.$error.required">Telefono es Requerido</small>                                    
+                                <small  ng-show="formUsuario.telefono.$error.pattern">Debe tener Mas de 5 Numeros</small>
+                            </div>
+						</div>
+						<div class="input-field col s4">
+							<input type="text" maxlength="40" name="correo" ng-model="user.correo" required ng-pattern="/^([\da-zA-Z_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/">
+							<label class="{{active}}">Correo</label>
+							<div class="error" ng-show="formUsuario.correo.$dirty && formUsuario.correo.$invalid">
+                                <small  ng-show="formUsuario.correo.$error.required">Email es Requerido</small>                                    
+                                <small  ng-show="formUsuario.correo.$error.pattern">Email No Valido</small>
+                            </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s4">
+							<input type="text" maxlength="20" name="usuario" ng-model="user.usuario" required ng-pattern="/^[a-zA-Z0-9]{4,15}$/">
+							<label class="{{active}}">Usuario</label>
+							<div class="error" ng-show="formUsuario.usuario.$dirty && formUsuario.usuario.$invalid">
+                                <small ng-show="formUsuario.usuario.$error.required">Nombre de Usuario es Requerido</small>                                    
+                                <small  ng-show="formUsuario.usuario.$error.pattern">Debe Tener Entre [4-15] Caracteres</small>                                    
+                            </div>
+						</div>
+						<div class="input-field col s4" ng-hide="editMode">
+							<input type="password" name="pass" ng-model="user.contrasena" required ng-pattern="/(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[a-zA-Z]).*$/" maxlength="15"  title="Minimo 6 Caracteres Alfanumericos">
+							<label class="{{active}}">Contraseña</label>
+							<div class="error" ng-show="formUsuario.pass.$dirty && formUsuario.pass.$invalid">
+                                <small ng-show="formUsuario.pass.$error.required">Contraseña es Requerida</small>
+                                <small  ng-show="formUsuario.pass.$error.pattern">Minimo 6 Caracteres[Numeros y Letras]</small>
+                            </div>  
+						</div>
+						<div class="input-field col s4" ng-hide="editMode">
+							<input type="password" name="pass1" ng-model="user.contrasena1" required ng-pattern="/(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[a-zA-Z]).*$/" maxlength="15"  title="Minimo 6 Caracteres Alfanumericos">
+							<label class="{{active}}">Repita Contraseña</label>
+							<div class="error" ng-show="formUsuario.pass1.$dirty && formUsuario.pass1.$invalid">
+                                <small ng-show="formUsuario.pass1.$error.required">Contraseña es Requerida</small>
+                                <small  ng-show="formUsuario.pass1.$error.pattern">Minimo 6 Caracteres[Numeros y Letras]</small>
+                            </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s4">
+							<select id="" class="browser-default" ng-model="user.tipo" ng-click="selecionar()" name="userperfil">
+								<option value="" selected disabled>Seleccionar</option>
+								<option ng-repeat="tipo in arrayTipo" value="{{tipo.id}}">
+									{{tipo.nombre}}
+								</option>
+							</select>
+						</div>
+						<div ng-if="cambio == true" class="input-field col s4">
+							<select class="browser-default" ng-model="user.perfil" name="perfiluser">
+								<option selected disabled>Seleccionar</option>
+								<option ng-repeat="perfil in arrayPerfil" value="{{perfil.id}}" >
+									{{perfil.nombre}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="fixed-action-btn" style="bottom: 45px;right: 220px;">
+					<a class="btn-floating btn-large waves-effect waves-light teal" style="float: right;" ng-click="guardar()" title="Guardar"><i class="material-icons">save</i></a>	
+				</div>
+				<div ng-if="cambiar == true" class="fixed-action-btn" style="bottom: 45px;right: 220px;">
+					<a class="btn-floating btn-large waves-effect waves-light teal" style="float: right;" ng-click="updateuser()" title="Modificar"><i class="material-icons">create</i></a>	
+				</div>
+				<div class="fixed-action-btn" style="bottom: 45px;right: 280px;">
+					<a class="btn-floating btn-large waves-effect waves-light red" style="float: right;" ng-click="nuevouser()" title="Nuevo"><i class="material-icons">add_circle</i></a>	
+				</div>
+
+			</div>
+
+		</div>
+		<div id="test2" class="col s12">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<center>
+					<i class="material-icons prefix">search</i>
+					<input placeholder="Filtro" id="first_name" type="text" class="validate" style="width: 50%"
+                       ng-model="filtro">
+                </center>
+                <table class="striped responsive-table" ng-table="tableParams">
+					<tr ng-repeat="usuario in $data | filter: filtro">
+						<td title="'NOMBRES Y APELLIDOS'">
+							{{usuario.nombre_apellido | uppercase}}
+						</td>
+						<td title="'CELULAR'">
+							{{usuario.celular}}
+						</td>
+						<td title="'CORREO'">
+							{{usuario.correo | uppercase}}
+						</td>
+						<td title="'USUARIO'">
+							{{usuario.usuario | uppercase}}
+						</td>
+						<td title="'ESTADO'">
+							<span ng-if="usuario.estado == 'ACTIVO'" style="color: green">
+								{{usuario.estado | uppercase}}	
+							</span>
+							<span ng-if="usuario.estado == 'INACTIVO'" style="color: red">
+								{{usuario.estado | uppercase}}	
+							</span>
+						</td>
+						<td title="'OPCIONES'">
+							<center>
+								<a href="" ng-click="getuser(usuario)">
+									<i class="material-icons prefix">mode_edit</i>
+								</a>
+							</center>
+						</td>
+					</tr>
+				</table><br><br>
+				<!--<table class="striped responsive-table">
+					<thead>
+						<tr>
+							<th>NOMBRES Y APELLIDOS</th>
+							<th>CELULAR</th>
+							<th>CORREO</th>
+							<th>USUARIO</th>
+							<th>ESTADO</th>
+							<th>OPCIONES</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="usuario in arrayUser | filter: filtro">
+							<td>{{usuario.nombre_apellido | uppercase}}</td>
+							<td>{{usuario.celular | uppercase}}</td>
+							<td>{{usuario.correo | uppercase}}</td>
+							<td>{{usuario.usuario | uppercase}}</td>
+							<td>
+								<span ng-if="usuario.estado == 'ACTIVO'" style="color: green">
+									{{usuario.estado | uppercase}}	
+								</span>
+								<span ng-if="usuario.estado == 'INACTIVO'" style="color: red">
+									{{usuario.estado | uppercase}}	
+								</span>
+							</td>
+							<td>
+								<center>
+									<a href="javascript:;" ng-click="getuser(usuario)">
+										<i class="material-icons prefix">mode_edit</i>
+									</a>
+								</center>
+							</td>
+						</tr>
+					</tbody>
+				</table>-->
+			</div>
+		</div>
+
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+    	$('.tooltipped').tooltip({delay: 50});
+  	});
+
+	
+</script>

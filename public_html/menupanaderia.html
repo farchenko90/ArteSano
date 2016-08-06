@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ES" ng-app="inicio">
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Artesano Natural</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="css/materialize.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+  <link href="css/select2.min.css" rel="stylesheet" type="text/css"/>
+	<!--<link rel="stylesheet" href="css/styles.css">-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Vollkorn:400italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+	
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCDwrkQK7vNJy2Eji3gBIH_i969nhlVZX0&signed_in=true" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="js/jquery-2.1.1.js"></script>    
+
+	<script type="text/javascript" src="js/plugins.js"></script>
+	<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+  <script src="js/select2.min.js" type="text/javascript"></script>
+
+	<!-- angular -->
+
+	<script src="js/libs/angular.js/angular.js" type="text/javascript"></script>
+
+	<script src="js/libs/angular.js/angular-route.js" type="text/javascript"></script>
+    <script src="js/libs/angular.js/ui-utils.min.js" type="text/javascript"></script>  
+    <script src="js/libs/angular.js/angular-resource.js" type="text/javascript"></script>    
+    <script src="js/libs/ng-currency.js" type="text/javascript"></script>
+    <script src="js/libs/ng-table.js" type="text/javascript"></script>
+
+    <script src="js/libs/angular.js/ui-bootstrap-tpls-0.11.0.js" type="text/javascript">
+	</script>
+
+    <script src="js/scripts/app.js" type="text/javascript"></script>
+	
+	<!-- Controllers -->
+    <script src="js/scripts/Controllers/inicioController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/ventasController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/productoController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/sesionController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/perfilController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/consultapanaderiadiariaController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/consultaparcialfechaController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/configuracionController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/cajaController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/inventarioController.js" type="text/javascript"></script>
+
+    <script src="js/scripts/appUsuario.js" type="text/javascript"></script>
+
+	<script>
+        session.getPermisos(); 
+        //session.getModulos();         
+    </script>
+
+    <!-- Services -->
+	<script src="js/scripts/Services/inicioService.js" type="text/javascript"></script>
+	<script src="js/scripts/Services/ventasService.js" type="text/javascript"></script>
+	<script src="js/scripts/Services/perfilService.js" type="text/javascript"></script>
+	<script src="js/scripts/Services/consultaService.js" type="text/javascript"></script>
+	<script src="js/scripts/Services/configuracionService.js" type="text/javascript"></script>
+	<script src="js/scripts/Services/cajaService.js" type="text/javascript"></script>
+  <script src="js/scripts/Services/inventarioService.js" type="text/javascript"></script>
+
+    <!--materialize js-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	
+</head>
+<body style="background-color: #f9f9f9;" ng-controller="sesionController">
+	<div id="loader-wrapper">
+      	<div id="loader"></div>        
+	    <div class="loader-section section-left"></div>
+	    <div class="loader-section section-right"></div>
+  	</div>
+	<div class="col s12 m6 z-depth-1">
+		<div class="navbar-fixed">
+			<nav class="topcolorpanaderia" role="navigation">
+				<div class="nav-wrapper">
+					
+					<div class="container">
+						<div class="row">
+							<div class="col s12 m4 l4">
+								<a href="" onclick="abrirModal()"><img src="images/artesanoicono.png" style="
+	height: 90px" class="position"></a>
+								<h4 class="textright">
+									<p class="colorarte font-title">Arte</p>
+									<p style="margin-top: -72px;margin-left: 60px;" class="colorsano font-title">Sano</p>
+								</h4>
+							</div>
+							<div class="col s12 m4 l8">
+								<ul class="right hide-on-med-and-down">
+									<li data-constrainwidth="false" data-activates="dropdown1" class="dropdown-button">
+										<a href="" class="colornavbar" style="font-size: 16px;font-family: 'Merriweather', serif;">{{usuario}}</a>
+									</li>
+								</ul>
+								<ul id="nav-mobile" class="side-nav sidefont">
+									<li><img src="images/brakshop.jpg" width="240" height="200"></li>
+									<li>
+										<a href="#inicio" class="collapsible-header waves-teal">
+				      						<i class="material-icons prefix">home</i>
+				      						<p class="font-menu">Inicio</p>
+				      					</a>
+									</li>
+									<li><a href="#" class="collapsible-header waves-teal">
+				      						<i class="material-icons prefix">shopping_cart</i>
+				      						<p class="font-menu">Ventas</p>
+				      					</a>
+      								</li>
+      								<li>
+      									<a href="#" class="collapsible-header waves-teal">
+				      						<i class="material-icons prefix">book</i>
+				      						<p class="font-menu">Consultas</p>
+				      					</a>
+				      					<div class="collapsible-body">
+				      						<ul>
+				      							<li><a>Consulta del dia</a></li>
+				      						</ul>
+				      					</div>
+      								</li>
+      								<li>
+      									<a href="#" class="collapsible-header waves-teal">
+				      						<i class="material-icons prefix">settings</i>
+				      						<p class="font-menu">Configuración</p>
+				      					</a>
+      								</li>
+      								<li>
+      									<a href="#" class="collapsible-header waves-teal" onclick="session.cerrarSesion();">
+				      						<i class="Small material-icons prefix">exit_to_app</i>
+				      						<p class="font-menu">Salir</p>
+				      					</a>
+      								</li>
+								</ul>
+								<a href="#" data-activates="nav-mobile" class="button-collapse right hide-on-med-and-up" style="margin-top: -80px">
+									<i class="material-icons white-text">menu</i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div id="dropdown1" class="card dropdown-content active" style="width: 305px;position: absolute;top: 0px;left: 900px;opacity: 1;margin-top: 65px;">
+  		<div class="card-content" style="background-color: #B29225">
+  			<center><img src="{{Usuario.imagen}}" alt="" width="80"></center>
+  			<center><h6 id="user" style="font-size: 16px;font-family: 'Merriweather', serif;">{{usuario}}</h6></center>
+		</div>
+		<div class="card-content" style="background-color: #F9F9F9">
+			<a style="float: left;margin-left: -10px;background-color: #453D2E;" class="btn waves-effect waves-light" href="#perfil">
+				Perfil
+			</a>
+			<a style="float: right;margin-right: -10px;background-color: #B57600 " class="btn waves-effect waves-light" onclick="session.cerrarSesion();">
+				Salir
+			</a></br>
+		</div>
+  	</div>
+	<!-- menu pantalla grande #9F7533; -->
+	<div class="row">
+		<div class="col s12 m4 l3" > 
+			<div id="slide-out" class="side-nav fixed menu_panaderia scrollspy" data-activates="nav-mobile" ><!--style="transform: translateX(0%);" -->
+				<ul class="collapsible collapsible-accordion" id="nav-mobile">
+					<li>
+      					<img  src="images/sarapan.jpg" width="250" height="220">
+      				</li>
+      				<li class="lis-top">
+      					<a href="javascript:#" class="collapsible-header waves-teal font-menu" style="font-size: 18px; color: #ffffff;">
+      						Inicio
+      						<i class="material-icons prefix letra-blanca">home</i>
+      					</a>
+      					<div class="collapsible-body" style="background-color: #1f263d;">
+      						<ul>
+      							<!--<li>
+      								<a href="#inicio" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Registrar Usuarios
+      								</a>
+      							</li>-->
+      							<li>
+      								<a href="#productospanaderia" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Registrar Producto
+      								</a>
+      							</li>
+      							<li>
+      								<a href="#caja" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Registro De Caja
+      								</a>
+      							</li>
+      							<li>
+      								<a href="#inventario" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Inventario
+      								</a>
+      							</li>
+      						</ul>
+      					</div>
+      				</li>
+      				<li class="lis-top" >
+      					<a href="javascript:abrirVentanaVentas();" class="collapsible-header waves-teal">
+      						<i class="material-icons prefix letra-blanca">shopping_cart</i>
+      						<p class="font-menu letra-blanca">Ventas</p>
+      					</a>
+      				</li>
+      				<li class="lis-top">
+      					<a href="javascript:#" class="collapsible-header waves-teal font-menu" style="font-size: 18px; color: #ffffff;">
+      						Consultas
+      						<i class="material-icons prefix letra-blanca">book</i>
+      					</a>
+      					<div class="collapsible-body" style="background-color: #1f263d;">
+      						<ul>
+      							<li>
+      								<a href="#consulta/parcialdiaria" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Consulta Diaria
+      								</a>
+      							</li>
+      							<li>
+      								<a href="#consulta/parcialfecha" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Consulta Por Fecha
+      								</a>
+      							</li>
+      						</ul>
+      					</div>
+      				</li>
+      				<li class="lis-top">
+      					<a href="javascript:#" class="collapsible-header waves-teal">
+      						<i class="material-icons prefix letra-blanca">settings</i>
+      						<p class="font-menu letra-blanca" >Configuracion</p>
+      					</a>
+      					<div class="collapsible-body" style="background-color: #1f263d;">
+      						<ul>
+      							<li>
+      								<a href="#configuracion" class="font-menu" style="font-size: 16px; color: #ffffff;">
+      									<i class="material-icons prefix letra-blanca">restaurant</i>
+      									Galeria
+      								</a>
+      							</li>
+      						</ul>
+      					</div>
+      				</li>
+      				<li class="lis-top">
+      					<a href="#" class="collapsible-header waves-teal" onclick="session.cerrarSesion();">
+      						<i class="Small material-icons prefix letra-blanca">exit_to_app</i>
+      						<p class="font-menu letra-blanca">Salir</p>
+      					</a>
+      				</li>
+      				<li class="lis-top">
+      					<a href="#" class="collapsible-header waves-teal">
+      						
+      					</a>
+      				</li>
+      			</ul>
+			</div>
+      	</div>
+	</div>
+
+	<div class="col s12">
+		<div class="ng-scope" id="contenido"  ng-view>
+			
+		</div>
+	</div>
+
+	<script>
+		var abierto;
+		$(document).ready(function(){
+			abierto = true; 
+			$(".button-collapse").sideNav({
+				menuWidth: 240, // Default is 240
+	      		edge: 'right', // Choose the horizontal origin
+	      		closeOnClick: true
+			});
+			$('.collapsible').collapsible();
+			$('.slider').slider({full_width: true});
+	      	$('.parallax').parallax();
+	      	$('.modal-trigger').leanModal();
+	      	$(".dropdown-button").dropdown();
+	      	$('ul.tabs').tabs();
+	      	$('.tooltipped').tooltip({delay: 50});
+	    });
+
+	    function abrirModal() {
+
+            if (abierto) {
+                $("#slide-out").animate({"left": "-=286px"}, 300);
+                $("#contenido").animate({"margin-left": "-=120px"}, 300);
+                abierto = false;
+            } else {
+                abierto = true;
+                $("#slide-out").animate({"left": "+=286px"}, 300);
+                $("#contenido").animate({"margin-left": "+=120px"}, 300);
+            }
+        }
+
+        function abrirVentanaVentas() {
+        	window.open("ventaspanaderia.html", 'popup', 'width=' + $(window).width() + ',height=' + $(window).height());
+        }
+
+	</script>
+
+</body>
+</html>

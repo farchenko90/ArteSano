@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html ng-app="artesano">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ArteSano Natural</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">      
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+  	<link rel="stylesheet" href="css/materialize.css">
+  	<link rel="stylesheet" href="css/carta.css">
+  	<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+  	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  	<script type="text/javascript" src="js/jquery-2.1.1.js"></script>   
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Josefin+Sans" rel="stylesheet">
+
+	<!-- angular -->
+
+	<script src="js/libs/angular.js/angular.js" type="text/javascript"></script>
+
+	<script src="js/libs/angular.js/angular-route.js" type="text/javascript"></script>
+    <script src="js/libs/angular.js/ui-utils.min.js" type="text/javascript"></script>  
+    <script src="js/libs/angular.js/angular-resource.js" type="text/javascript"></script>    
+    <script src="js/libs/ng-currency.js" type="text/javascript"></script>
+    <script src="js/libs/ng-table.js" type="text/javascript"></script>
+    <script src="js/scripts/appartesano.js" type="text/javascript"></script>
+	
+	<script src="js/scripts/appUsuario.js" type="text/javascript"></script>
+	
+  	<!-- Controller -->
+    <script src="js/scripts/Controllers/arteController.js" type="text/javascript"></script>
+
+	<!-- Service -->
+
+    <script src="js/scripts/Services/arteService.js" type="text/javascript"></script>
+
+  	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<style>
+		.parallax-container {
+      		height: 380px;
+    	}
+	</style>
+
+</head>
+<body>
+
+	<div class="col s12 m6">
+		<div class="navbar-fixed">
+			<nav style="background-color: rgba(19,23,36,0.5);" role="navigation">
+				<div class="nav-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col s12 m4 l4">
+								<img src="images/artesanoicono.png" style="
+	height: 90px" class="position">
+								<h4 class="textright"><p class="colornavbar font-title">ArteSano</p></h4>
+							</div>
+							<div class="col s12 m4 l8">
+								<ul class="right hide-on-med-and-down">
+									<li><a href="../index.html" class="colornavbar" style="font-family: 'Oswald', sans-serif;">Inicio</a></li>
+									<li><a class="colornavbar modal-trigger" style="font-family: 'Oswald', sans-serif;" href="#modalsesion">Iniciar Sesión</a></li>
+								</ul>
+								<ul id="nav-mobile" class="side-nav sidefont">
+									<li><img src="images/brakshop.jpg" width="240" height="200"></li>
+									<li><a href="http://www.artesanocafe.com/" class="colornavbar" style="font-family: 'Oswald', sans-serif;">Inicio</a></li>
+									<li><a href="#modalsesion" class="textomenu modal-trigger" style="font-family: 'Oswald', sans-serif;"><p class="textomenu">Iniciar Sesión</p></a></li>
+								</ul>
+								<a href="#" data-activates="nav-mobile" class="button-collapse right hide-on-med-and-up" style="margin-top: -80px">
+									<i class="material-icons white-text">menu</i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	
+	<div ng-controller="arteController">
+		
+		<!-- modal del inicio sesion-->
+		<div class="row">
+			<div class="col s12 m8 l4">
+				<div class="modal" id="modalsesion">
+					<div class="modal-content" style="background-color: #4CAF50">
+						<a class="btn-floating btn-flat green modal-icon modal-close">
+							<div class="icon-preview">
+								<i class="material-icons" style="padding-left: 7px;">clear</i>
+							</div>
+						</a>
+						<center><h5 class="letra-blanca">Iniciar Sesión</h5></center>
+					</div>
+					<div class="modal-footer">
+						<div class="input-field col s10">
+							<i class="material-icons prefix">account_box</i>
+							<input id="icon_prefix" type="text" class="validate" ng-model="Artesano.usuario">
+	      					<label for="icon_prefix">Usuario</label>
+						</div>
+						<div class="input-field col s10">
+							<i class="material-icons prefix">https</i>
+							<input id="icon_prefix" type="password" class="validate" ng-model="Artesano.clave">
+	      					<label for="icon_prefix">Contraseña</label>
+						</div><br>
+						<a style="background-color: #35b548" class="waves-effect waves-light btn" ng-click="ingresar()"><i class="material-icons left">input</i>Ingresar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" style="margin-top: 70px">
+			<div class="row">
+				<div class="col s12 m12 l12" >
+					<ul class="collapsible popout z-depth-2" data-collapsible="accordion">
+			     		<li>
+			            	<div class="collapsible-header"><i class="fa fa-apple" aria-hidden="true"></i>Seleccione un producto</div>
+			            	<div class="collapsible-body colorfondo" style="display: block;margin-bottom: 15px;">
+			            		<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(8)">Panaderia</a>
+			            		<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(10)">Helados</a>
+			            		<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(2)">Comidas Rapidas</a>
+			            		<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(3)">Jugos</a>
+								<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(1)">Almuerzos</a>
+								<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(5)">Tienda</a>
+								<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(6)">Desayuno</a>
+								<a class="waves-effect waves-orange btn" style="background-color: #78909C" ng-click="galerias(7)">Ensaladas</a>
+			            	</div>
+			     		</li>
+			  		</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container ">
+			<div class="row">
+				<span ng-repeat="galeria in arrayGaleria">
+					<div class="col s12 m12 l4">
+						<div class="card">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img src="{{galeria.imagen}}" width="280" height="250">
+							</div>
+							<div class="card-content">
+								<p style="font-size: 10px;font-family: 'Merriweather', serif;">{{galeria.materia}}</p>
+								<h6 style="font-family: 'Oswald', sans-serif;">{{galeria.nombre}}</h6>
+							</div>
+						</div>
+					</div>
+				</span>
+			</div>
+		</div>
+
+		<section style="margin-bottom: -20px">
+			<div class="parallax-container z-depth-1">
+				<div class="parallax" data-center="0.5">
+					<img src="{{Imagen}}" width="1280">
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	
+
+	<footer class="page-footer" id="contact" style="background-color: #131724;">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text" style="font-family: 'Oswald', sans-serif;">Encuentranos en</h5>
+					<ul>
+						<li class="lista"><a href="https://www.facebook.com/artesanorestaurantenatural" target="_blank"><img src="social-networks/Facebook.png" width="35"></a></li>
+						<li class="lista"><a href="https://www.instagram.com/artesano_naturalcafe" title="Instagram" target="_blank"><img src="social-networks/Instagram.png" width="35"></a></li>
+						<li class="lista"><a href="#!" title="Twitter"><img src="social-networks/Twitter.png" width="35"></a></li>
+						<li class="lista"><a href="#!" title="Google"><img src="social-networks/Google.png" width="35"></a></li>
+						<li class="lista"><a href="#!" title="Snapchat"><img src="social-networks/Snapchat.png" width="35"></a></li>
+					</ul>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<h5 class="white-text" style="font-family: 'Oswald', sans-serif;">Contáctenos</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"><i class="material-icons">location_on</i> Calle 13 No. 6 - 81 Valledupar - Cesar</a></li>
+		                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"><i class="material-icons">email</i> artesano@gmail.com</a></li>
+		                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"><i class="material-icons">phone</i> Tel: (089) 5808118</a></li>
+		                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"><i class="material-icons">phone</i> Cel: 304-5855827</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;">© 2016 Copyright ArteSano</p>
+			</div>
+		</div>
+	</footer>
+	
+	<script>
+		$(document).ready(function(){
+
+			$(".button-collapse").sideNav({
+				menuWidth: 240, // Default is 240
+	      		edge: 'right', // Choose the horizontal origin
+	      		closeOnClick: true
+			});
+			$('.collapsible').collapsible();
+			$('.slider').slider({full_width: true});
+	      	$('.parallax').parallax();
+	      	$('.modal-trigger').leanModal();
+	      	
+    	});
+	</script>
+
+</body>
+</html>

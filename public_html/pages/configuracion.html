@@ -1,0 +1,28 @@
+<div ng-controller="configuracionController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div style="background-color: #FFF;height: 50px;" class="z-depth-1">
+			<center><h5>Galeria De Imagenes</h5></center>
+		</div><br>
+		<span ng-repeat="restaurante in arrayRestaurante">
+			<div class="col s4">
+				<div class="card">
+					<div class="card-image waves-effect waves-block waves-light">
+						<img src="{{restaurante.imagen}}" width="300" height="210">
+					</div>
+					<div class="card-content">
+						<h6>{{restaurante.materia}}</h6>
+						<h6>{{restaurante.nombre}}</h6>
+						<div class="switch">
+    						<label class="active">
+      							INACTIVO
+      							<input type="checkbox" ng-model="restaurante.estadogaleria" ng-true-value="'ACTIVO'" ng-false-value="'INACTIVO'" ng-click="modificarestado(restaurante)">
+      							<span class="lever"></span>
+      							ACTIVO
+    						</label>
+  						</div>
+					</div>
+				</div>
+			</div>
+		</span>
+	</div>
+</div>

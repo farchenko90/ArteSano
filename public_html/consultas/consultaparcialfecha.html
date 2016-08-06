@@ -1,0 +1,93 @@
+<div ng-controller="consultaparcialfechaController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div class="col s12 ">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="font-menu" href="#fcredito">Consulta Fecha Creditos</a></li>
+				<li class="tab col s3"><a class="font-menu" href="#ftarjeta">Consulta Fecha Tarjeta</a></li>
+			</ul>
+		</div>
+		<div id="fcredito">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<div class="row">
+					<div class="input-field col s2"></div>
+					<div class="input-field col s3">
+						<label for="first_name2">Fecha Inicial</label>
+						<input type="date" name="finicial" for="first_name2" class="datepicker">
+					</div>
+					
+					<div class="input-field col s3">
+						<label for="first_name2">Fecha Final</label>
+						<input type="date" name="ffinal" for="first_name2" class="datepicker">
+					</div>
+					<div class="input-field col s2">
+						<a class="btn waves-effect waves-light indigo" ng-click="loadDiaro()">Buscar</a>
+					</div>
+				</div>
+				<table class="striped responsive-table" ng-table="tableParams">
+					<tr ng-repeat="diario in $data | filter: filtro">
+						<td title="'USUARIO'">
+							{{diario.nombre_apellido}}
+						</td>
+						<td title="'TOTAL VENDIDO'">
+							{{diario.total | currency}}
+						</td>
+						<td title="'FECHA'">
+							<span>
+								{{diario.fecha}}	
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="ftarjeta">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<div class="row">
+					<div class="input-field col s2"></div>
+					<div class="input-field col s3">
+						<label for="first_name2">Fecha Inicial</label>
+						<input type="date" name="finicial1" for="first_name2" class="datepicker">
+					</div>
+					
+					<div class="input-field col s3">
+						<label for="first_name2">Fecha Final</label>
+						<input type="date" name="ffinal1" for="first_name2" class="datepicker">
+					</div>
+					<div class="input-field col s2">
+						<a class="btn waves-effect waves-light indigo" ng-click="loadTarjeta()">Buscar</a>
+					</div>
+				</div>
+				<table class="striped responsive-table" ng-table="tableParams1">
+					<tr ng-repeat="diario in $data | filter: filtro">
+						<td title="'USUARIO'">
+							{{diario.nombre_apellido}}
+						</td>
+						<td title="'TOTAL VENDIDO'">
+							{{diario.total | currency}}
+						</td>
+						<td title="'FECHA'">
+							<span >
+								{{diario.fecha}}	
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+    	$('.tooltipped').tooltip({delay: 50});
+
+    	$('.datepicker').pickadate({
+    		selectMonths: true, // Creates a dropdown to control month
+    		selectYears: 15, // Creates a dropdown of 15 years to control year
+    		format: 'yyyy-mm-dd'
+  		});
+
+  	});
+</script>

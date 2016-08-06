@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html ng-app="artesano">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Artesano Natural</title>
+	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="public_html/css/materialize.css">
+	<link rel="stylesheet" href="public_html/css/style.css">
+	<link rel="stylesheet" href="public_html/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCDwrkQK7vNJy2Eji3gBIH_i969nhlVZX0&signed_in=true" type="text/javascript"></script>
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Josefin+Sans" rel="stylesheet">
+
+	<script type="text/javascript" src="public_html/js/jquery-2.1.1.js"></script> 
+
+	<!-- angular -->
+
+	<script src="./public_html/js/libs/angular.js/angular.js" type="text/javascript"></script>
+
+	<script src="./public_html/js/libs/angular.js/angular-route.js" type="text/javascript"></script>
+    <script src="./public_html/js/libs/angular.js/ui-utils.min.js" type="text/javascript"></script>  
+    <script src="./public_html/js/libs/angular.js/angular-resource.js" type="text/javascript"></script>    
+    <script src="./public_html/js/libs/ng-currency.js" type="text/javascript"></script>
+    <script src="./public_html/js/libs/ng-table.js" type="text/javascript"></script>
+    <script src="./public_html/js/scripts/appartesano.js" type="text/javascript"></script>
+	
+	<script src="./public_html/js/scripts/appUsuario.js" type="text/javascript"></script>
+
+	<!-- Controller -->
+    <script src="./public_html/js/scripts/Controllers/arteController.js" type="text/javascript"></script>
+
+	<!-- Service -->
+
+    <script src="./public_html/js/scripts/Services/arteService.js" type="text/javascript"></script>
+
+    <!--materialize js-->
+	<script type="text/javascript" src="public_html/js/materialize.min.js"></script>
+	<script src="public_html/js/EzFade.js"></script>
+	
+	<!--Slider-->
+	<script>
+    	$(document).ready(function(){
+        	$('#fadeMe').EzFade({height: '605'});  
+    	});
+	</script>
+
+	<style>
+		
+		.parallax-container {
+      		height: 440px;
+    	}
+
+		#map {
+    		height: 100%;
+		}
+
+	</style>
+</head>
+<body>
+
+
+	<!--<div ng-controller="arteController">-->
+		<div class="col s12 m6">
+			<div class="navbar-fixed">
+				<nav style="background-color: rgba(19,23,36,0.5);" role="navigation">
+					<div class="nav-wrapper">
+						<div class="container">
+							<div class="row">
+								<div class="col s12 m4 l4">
+									<img src="public_html/images/artesanoicono.png" style="
+		height: 90px" class="position">
+									<h4 class="textright"><p class="colornavbar font-title">ArteSano</p></h4>
+								</div>
+								<div class="col s12 m4 l8">
+									<ul class="right hide-on-med-and-down">
+										<li><a href="public_html/nuestracartas.html" class="colornavbar" style="font-family: 'Oswald', sans-serif;">Nuestra Carta</a></li>
+										<li><a href="#contact" class="colornavbar" style="font-family: 'Oswald', sans-serif;">Contáctenos</a></li>
+										<li><a href="#modalsesion" class="colornavbar modal-trigger" style="font-family: 'Oswald', sans-serif;">Iniciar Sesión</a></li>
+									</ul>
+									<ul id="nav-mobile" class="side-nav sidefont">
+										<li><img src="public_html/images/brakshop.jpg" width="240" height="200"></li>
+										<li><a href="public_html/nuestracartas.html"><p class="textomenu" style="font-family: 'Oswald', sans-serif;">Nuestra Carta</p></a></li>
+										<li><a href="#contact" class="textomenu"><p class="textomenu" style="font-family: 'Oswald', sans-serif;">Contáctenos</p></a></li>
+										<li><a href="#modalsesion" class="textomenu modal-trigger"><p class="textomenu" style="font-family: 'Oswald', sans-serif;">Iniciar Sesión</p></a></li>
+									</ul>
+									<a href="#" data-activates="nav-mobile" class="button-collapse right hide-on-med-and-up" style="margin-top: -80px">
+										<i class="material-icons white-text">menu</i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!--Slider-->
+		<section id="head">
+		    <div id="fadeMe">
+		        <img src="public_html/images/fondo4.jpg" alt="" style="width: 100%">
+		        <img src="public_html/images/fondo2.png" alt="" style="width: 100%">
+		        <img src="public_html/images/fondo3.jpg" alt="" style="width: 100%">
+		        <img src="public_html/images/piaza.jpg" alt="" style="width: 100%">
+		    </div>
+		    
+		    <!--Imágen de color verde que le da efecto a las fotos del slider-->
+		    <div class="bg-clr"></div>
+
+		    <!--Textos que van encima de las imágenes del slider-->
+		    <div id="copy">
+		        <h1 class="font-title">ArteSano Natural</h1>
+		        <h4 style="font-family: 'Raleway', sans-serif;">Café Restaurante</h4>
+		    </div>
+		</section>
+		<!--Fin Slider-->
+	
+	<div ng-controller="arteController">
+
+		<!-- modal del inicio sesion-->
+		<div class="row">
+			<div class="col s12 m8 l4">
+				<div class="modal" id="modalsesion">
+					<div class="modal-content" style="background-color: #4CAF50">
+						<a class="btn-floating btn-flat green modal-icon modal-close">
+							<div class="icon-preview">
+								<i class="material-icons" style="padding-left: 7px;">clear</i>
+							</div>
+						</a>
+						<center><h5 class="letra-blanca">Iniciar Sesión</h5></center>
+					</div>
+					<div class="modal-footer">
+						<div class="input-field col s10">
+							<i class="material-icons prefix">account_box</i>
+							<input id="icon_prefix" type="text" class="validate" ng-model="Artesano.usuario">
+	      					<label for="icon_prefix">Usuario</label>
+						</div>
+						<div class="input-field col s10">
+							<i class="material-icons prefix">https</i>
+							<input id="icon_prefix" type="password" class="validate" ng-model="Artesano.clave">
+	      					<label for="icon_prefix">Contraseña</label>
+						</div><br>
+						<a style="background-color: #35b548" class="waves-effect waves-light btn" ng-click="ingresar()"><i class="material-icons left">input</i>Ingresar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+		<!-- modal del mapa -->
+		<div class="row">
+			<div class="col s12 m8 l4">
+				<div id="modal1" class="modal">	
+					<div class="modal-content" style="background-color: #4CAF50;">
+						<a class="btn-floating btn-flat green modal-icon modal-close">
+							<div class="icon-preview">
+								<i class="material-icons" style="padding-left: 7px;">clear</i>
+							</div>
+						</a>
+						<center><h5 class="letra-blanca">Encuentranos En</h5></center>	
+					</div>
+					<div class="modal-content">
+						<img src="public_html/images/newartesano.jpg" width="150">
+					</div>
+					<!--<div class="modal-footer">
+					
+					</div>-->
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="margin-top: 15px;">
+			<div style="background-color: #ffffff;margin-top: -65px;height: 570px">
+				<div class="container">
+					<div class="row">
+						<div class="col s12">
+							<center><h5 style="margin-top: 50px;"><p class="green-text" style="font-family: 'Oswald', sans-serif;">¿Que Es ArteSano?</p></h5></center>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col s12 m12 l4">
+							<img class="z-depth-1" src="public_html/images/cereal.jpg" height="500" width="270">
+						</div>
+						<div class="col s12 m12 l7" >
+							<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;">
+								Su creador intelectual,Alejandro Cordoba, explica que Artesano Natural Cafe Restaurante es un cafe-restaurante especializado en comida vegetariana,natural y saludable elaborada a base de productos fresco y organicos donde se remplaza la proteína animal por la vegetal,es decir,no hacen uso de carnes de animales.
+
+							</p>
+							<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"> 
+								Implementamos el uso de carnes de origen vegetal derivados de los granos (lenteja,frijoles,linaza,soya,cereales,etc.),dándoles un vuelco total a la forma como se vienen preparando los alimentos hoy en día e implementamos ingredientes y técnicas que no son nuevas pero si muy saludables para el organismo como el uso de aceites extra vírgenes,sales marinas,endulzantes de origen natural,especies y aliños de origen natural,salsas naturales,vegetales y frutas orgánicas,panes y harinas integrales,queso de soya entre otros.
+							</p>
+
+							<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;">
+								Nuestra única intención es contribuir al bienestar y buen estilo de vida de la sociedad vallenata,ofreciendo una selección de productos únicos a buen precio,deliciosos y sobre todo saludable.
+							</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="margin-top: 15px;background-color: #7cb342;">
+			<div style="margin-top: 50px;height: 600px">
+				<div class="container">
+					<div class="row">
+						<div class="col s12">
+							<center><h5 style="margin-top: 10px;"><p class="letra-blanca" style="font-family: 'Oswald', sans-serif;">¿Como Se Hace?</p></h5></center>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col s12 m12 l4">
+							<img class="z-depth-1" src="public_html/images/desayunoarte.jpg" height="490" width="290">
+						</div>
+						<div class="col s12 m12 l7">
+							<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;" class="letra-blanca">
+								En el restaurante ArteSano se utilizan varios tipos de carne y otros productos derivados de la soya que usan y producen localmente como: Carnes de hamburgesas a base de granos (lentejas,frijoles,garbanzos),quínoa y amaranto (son producidas por nosotros en nuestras cocinas por personal debidamente capacitado en el tema).
+								Embutidos (salchicha,jamón) a base de quínoa,soya y linaza (una parte es elaborada en una industria familiar de productos integrales que tenemos en Venezuela y otra es comprada a diferentes proveedores en Bogotá,Bucaramanga y Cali).
+							</p>
+
+							<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;" class="letra-blanca">
+								Leches,quesos,yogures y salsas a base de soya: son todos elaborados por nosotros en nuestras cocinas con unas máquinas que se encargan de procesar el grano y extraer la leche de las soyas.
+								Consideramos que el éxito que ha tenido hasta el momento el proyecto ArteSano se debe a la mezcla entre innovación,presentación del lugar,calidad de los productos y el buen sabor de las comidas; a su vez la disciplina,contancia y sobre todo la confianza y la dirección de Dios.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="margin-top: 15px;">
+			<div style="background-color: #ffffff;margin-top: -65px;height: 200px">
+				<div class="container">
+					<div class="row">
+						<div>
+							<center ><h5 style="margin-top: 70px;"><p class="green-text" style="font-family: 'Oswald', sans-serif;">Servicios</p></h5></center>
+							<div class="col s12 m12 l4">
+								<div class="card">
+									<div class="card-image waves-effect waves-block waves-light">
+										<div class="view">
+											<img src="public_html/images/torta.jpg" width="300" height="200">
+											<div class="mask"></div>
+											<div class="content">
+												<h2>Panaderia</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m12 l4">
+								<div class="card">
+									<div class="card-image waves-effect waves-block waves-light">
+										<div class="view">
+											<img src="public_html/images/fondoheladeria.jpg" width="300" height="200">
+											<div class="mask"></div>
+											<div class="content">
+												<h2>Heladeria</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m12 l4">
+								<div class="card">
+									<div class="card-image waves-effect waves-block waves-light">
+										<div class="view">
+											<img src="public_html/images/lunch.jpg" width="300" height="200">
+											<div class="mask"></div>
+											<div class="content">
+												<h2>Restaurante</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m12 l4">
+								<div class="card">
+									<div class="card-image waves-effect waves-block waves-light">
+										<div class="view">
+											<img src="public_html/images/jugonatural.jpg" width="300" height="200">
+											<div class="mask"></div>
+											<div class="content">
+												<h2>Jugos Naturales</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col s12 m12 l4">
+								<div class="card">
+									<div class="card-image waves-effect waves-block waves-light">
+										<div class="view">
+											<img src="public_html/images/hamburgesa.jpg" width="300" height="200">
+											<div class="mask"></div>
+											<div class="content">
+												<h2>Comidas Rapidas</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12 z-depth-1" style="background-color: #7cb342;">
+			<div style="margin-top: 50px;height: 560px">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12" style="margin-top: 20px;">
+							<center ><h5 style="margin-top: 50px;"><p class="letra-blanca" style="font-family: 'Oswald', sans-serif;">Donde Nos Encontramos</p></h5></center>
+							<span style="margin-top: 10px;"></span>
+							<!--<div class="capa-anti-eventos" onclick="style.display='none'">
+								
+							</div>-->
+							<div id="map" style="height: 400px;" class="z-depth-2">
+								
+							</div>
+								<!--<a class="btn-floating-arte btn-large waves-effect waves-light gren-arte boton-float" title="Como llegar"><i class="material-icons" style="margin-top: -5px">navigation</i></a>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="margin-top: 15px;">
+			<div style="background-color: #ffffff;margin-top: -65px;height: 270px">
+				<div class="container">
+					<div class="row">
+						<div class="col s12">
+							<center><h5 style="margin-top: 50px;"><p class="green-text" style="font-family: 'Oswald', sans-serif;">Familia ArteSano</p></h5></center>
+						</div>
+					</div>
+					<div class="row" style="padding-left: 120px">
+						<div class="col s12 m12 l3">
+							<!--<img src="public_html/images/hambuarte.jpg" alt="" height="490" width="290" class="z-depth-1">-->
+						</div>
+						<div class="col s12 m12 l3" >
+							<img src="public_html/images/logo1.png" alt="">
+						</div>
+						<div class="col s12 m12 l3">
+							<img src="public_html/images/logo2.png" alt="">
+						</div>
+						<div class="col s12 m12 l3">
+							<img src="public_html/images/logo3.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section style="margin-bottom: -20px">
+			<div class="parallax-container">
+				<div class="parallax" data-center="0.5">
+					<img src="public_html/images/fruit.jpg" width="1280">
+				</div>
+			</div>
+		</section>
+
+		<div class="col s12 m12 l12" style="margin-top: 15px;">
+			<div style="background-color: #ffffff;margin-top: -65px;height: 300px">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<center>
+								<h5 style="margin-top: 110px;">
+									<p class="green-text" style="font-family: 'Oswald', sans-serif;">Contáctenos</p>
+								</h5>
+							</center>
+							<span style="margin-top: 30px;"></span>
+							<div class="col s12 m6 l6">
+								<div class="input-field col s10">
+									<i class="fa fa-user prefix" aria-hidden="true"></i>
+									<input id="icon_prefix" type="text" class="validate">
+						          	<label class="lbel-left" for="icon_prefix">Nombres</label>
+						        </div>
+							</div>
+							<div class="col s12 m6 l6">
+								<div class="input-field col s10">
+						        	<i class="fa fa-envelope prefix" aria-hidden="true"></i>
+						          	<input id="last_name" type="text" class="validate">
+						          	<label for="last_name">Email</label>
+						        </div>
+							</div>
+							<div class="input-field col s10">
+					        	<i class="fa fa-commenting-o prefix" aria-hidden="true"></i>
+					          	<input id="last_comment" type="text" class="validate">
+					          	<label for="last_comment">Mensaje</label>
+					        </div>
+					        <div class="input-field col s10">
+					        	<center><button class="btn waves-effect waves-light" name="action">	Enviar
+									<i class="material-icons right">send</i>
+								</button></center>
+					        </div>
+					        <div class="input-field col s10">
+								<center><h5><p class="green-text" style="font-family: 'Josefin Sans', sans-serif;font-size: 24px;text-align:justify; margin-left: 100px">Dejanos tus mensajes acerca de nosotros por este medio</p></h5></center>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="page-footer" id="contact" style="background-color: #131724;">
+			<div class="container">
+				<div class="row">
+					<div class="col l6 s12">
+						<h5 class="white-text" style="font-family: 'Oswald', sans-serif;">Encuentranos en</h5>
+						<ul>
+							<li class="lista"><a href="https://www.facebook.com/artesanorestaurantenatural" target="_blank" title="Facebook"><img src="public_html/social-networks/Facebook.png" width="35"></a></li>
+							<li class="lista"><a href="https://www.instagram.com/artesano_naturalcafe" target="_blank" title="Instagram"><img src="public_html/social-networks/Instagram.png" width="35"></a></li>
+							<li class="lista"><a href="#!" title="Twitter"><img src="public_html/social-networks/Twitter.png" width="35"></a></li>
+							<li class="lista"><a href="#!" title="Google"><img src="public_html/social-networks/Google.png" width="35"></a></li>
+							<li class="lista"><a href="#!" title="Snapchat"><img src="public_html/social-networks/Snapchat.png" width="35"></a></li>
+						</ul>
+					</div>
+					<div class="col l4 offset-l2 s12">
+						<h5 class="white-text" style="font-family: 'Oswald', sans-serif;">Contáctenos</h5>
+						<ul>
+							<li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 16px;text-align:justify;"><i class="material-icons">location_on</i> Calle 13 No. 6 - 81 Valledupar - Cesar</a></li>
+			                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 16px;text-align:justify;"><i class="material-icons">email</i> artesano@gmail.com</a></li>
+			                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 16px;text-align:justify;"><i class="material-icons">phone</i> Tel: (085) 5706651</a></li>
+			                <li><a class="grey-text text-lighten-3" style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;"><i class="material-icons">phone</i> Cel: 304-5855827</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="container">
+					<p style="font-family: 'Josefin Sans', sans-serif;font-size: 18px;text-align:justify;">© 2016 Copyright ArteSano</p>
+				</div>
+			</div>
+		</footer>
+	<!--</div>-->
+	
+
+<script>
+
+	var map;
+	var pos = {lat: 10.4808009, lng: -73.2485051};
+	var icon = 'public_html/images/gps.png';
+	function initMap() {
+
+		var styleArray = [
+		    {
+		      	featureType: "all",
+		      	stylers: [
+		       		{ saturation: -80 }
+		      	]
+		    },{
+		      	featureType: "road.arterial",
+		      	elementType: "geometry",
+		      	stylers: [
+		      		{ hue: "#00ffee" },
+	        		{ saturation: 50 }
+	      		]
+	    	},{
+	      		featureType: "poi.business",
+	      		elementType: "labels",
+	      		stylers: [
+	        		{ visibility: "off" }
+	      		]
+	    	}
+  		];
+
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: pos,
+			zoom: 15,
+			streetViewControl: true,
+			rotateControl: true,
+			styles: styleArray,
+		});
+
+		map.setTilt(-45);
+
+		var marker = new google.maps.Marker({
+			position: pos,
+			map: map,
+			icon: icon,
+			animation: google.maps.Animation.DROP
+		});
+
+		marker.addListener('click', function() {
+    		$('#modal1').openModal();
+  		});
+
+  		//var infoWindow = new google.maps.InfoWindow({map: map});
+
+  		if(navigator.geolocation){
+  			navigator.geolocation.getCurrentPosition(function(position) {
+	      		var ubicacion = {
+			        lat: position.coords.latitude,
+			        lng: position.coords.longitude
+	      		};
+	      		if(ubicacion == null){
+
+	      		}else{
+	      			var markerubi = new google.maps.Marker({
+						position: ubicacion,
+						map: map,
+						icon: icon,
+						animation: google.maps.Animation.DROP
+					});
+	      		}
+	      		//alert(JSON.stringify(ubicacion));
+	      		//infoWindow.setPosition(ubicacion);
+      			//infoWindow.setContent('Location found.');
+		    	map.setCenter(ubicacion);
+    		}, function() {
+      			//handleLocationError(true, infoWindow, map.getCenter());
+    		});
+  		}/*else {
+    		handleLocationError(false, infoWindow, map.getCenter());
+  		}*/
+
+	}
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		infoWindow.setPosition(pos);
+		infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+	}
+
+	
+	$(document).ready(function(){
+
+		$(".button-collapse").sideNav({
+			menuWidth: 240, // Default is 240
+      		edge: 'right', // Choose the horizontal origin
+      		closeOnClick: true
+		});
+		$('.collapsible').collapsible();
+		$('.slider').slider({full_width: true});
+      	$('.parallax').parallax();
+      	$('.modal-trigger').leanModal();
+      	$('.tooltipped').tooltip({delay: 50});
+      	initMap();
+      	
+
+    });
+
+	
+
+
+</script>
+
+</body>
+</html>

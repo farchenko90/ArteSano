@@ -1,0 +1,111 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+.lista{
+	float: left;
+    margin-left: 5px;
+}
+main {
+    flex: 1 0 auto;
+}
+.topcolor{
+	background-color: #5D4037;
+}
+.colorsearh{
+	background-color: #e9e9e9;	
+}
+.position{
+	margin-top: -22px;
+	margin-left: -20px;
+	vertical-align: middle;
+	position: absolute;
+}
+.colorfondo{
+	background-color: #F6F4F1;
+}
+.textright{
+	margin-left: 80px;
+	margin-top: -20px;
+}
+.colornavbar{
+	color: #4CAF50;
+	font-family: MEDIUM;
+}
+.sidefont{
+	background-color: #4CAF50;
+}
+.textomenu{
+	color: #FAFAFA;
+	font-family: MEDIUM;
+}
+.colorfooter{
+	background-color: #846C63;
+}
+.letrafooter{
+	color: #4caf50;
+	font-family: MEDIUM;
+}
+.green-text{
+	color: #4CAF50;
+	font-family: MEDIUM;	
+}
+.cabecera{
+	height: 40px;
+	background-color: #00897b;
+}
+.modal-icon{
+	float: right;
+	margin-top: -20px;
+	margin-right: -20px;
+}
+.icono{
+	background-image: url('/images/cancel.png');
+	background-repeat: no-repeat;
+	float: right;
+}
+.letra-blanca{
+	color: #ffffff;
+}
+.font-title{
+	font-family: 'Lobster', cursive;
+}
+.font-normal{
+	font-family: 'PT Serif', serif;
+}
+.boton-float{
+	float: left;
+	margin-top: -45px;
+}
+
+hr.style18 { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+
+hr.style18:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+
+hr.style14 { 
+  border: 0; 
+  height: 1px; 
+  background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}
+.lbel-left{
+	margin-left: -10rem;
+}

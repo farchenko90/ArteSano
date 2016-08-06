@@ -1,0 +1,52 @@
+<div ng-controller="consultapanaderiadiariaController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div class="col s12 ">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="font-menu" href="#pcredito">Consulta A Creditos</a></li>
+				<li class="tab col s3"><a class="font-menu" href="#ptarjeta">Consulta A Tarjeta</a></li>
+			</ul>
+		</div>
+		<div id="pcredito" class="col s12">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<table class="striped responsive-table" ng-table="tableParams">
+					<tr ng-repeat="diario in $data | filter: filtro">
+						<td title="'USUARIO'">
+							{{diario.nombre_apellido}}
+						</td>
+						<td title="'TOTAL'">
+							{{diario.total | currency}}
+						</td>
+						<td title="'FECHA'">
+							{{diario.fecha}}
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="ptarjeta" class="col s12">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<table class="striped responsive-table" ng-table="tableParams1">
+					<tr ng-repeat="tarjeta in $data | filter: filtro">
+						<td title="'USUARIO'">
+							{{tarjeta.nombre_apellido}}
+						</td>
+						<td title="'TOTAL'">
+							{{tarjeta.total | currency}}
+						</td>
+						<td title="'FECHA'">
+							{{tarjeta.fecha}}
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+    	$('.tooltipped').tooltip({delay: 50});
+  	});
+</script>
