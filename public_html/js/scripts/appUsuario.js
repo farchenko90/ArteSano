@@ -98,6 +98,13 @@ var session = {
         }
     },
 
+    getDireccion:function(){
+        var obj = JSON.parse(sessionStorage.getItem("usuario"));
+        if (obj){            
+            return obj[0].direccion;
+        }
+    },
+
     getCorreo:function(){
         var obj = JSON.parse(sessionStorage.getItem("usuario"));
         if (obj){            

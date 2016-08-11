@@ -24,10 +24,21 @@ class ProductoController extends Controller
         return Producto::find($id);
     }
 
-    public function productorestaurante(){
-        return Producto::select('producto.*','materia.nombre as materia')
+    public function Allproductorestaurante(){
+        return Producto::select('producto.*','materia.nombre as materia','usuario.nombre_apellido')
                     ->join('materia','producto.idmateria','=','materia.id')
+                    ->join('usuario','usuario.id','=','producto.idusuario')
                     ->where('producto.tipo','=','RESTAURANTE')
+                    ->get();
+        
+    }
+
+    public function productorestaurante($id){
+        return Producto::select('producto.*','materia.nombre as materia','usuario.nombre_apellido')
+                    ->join('materia','producto.idmateria','=','materia.id')
+                    ->join('usuario','usuario.id','=','producto.idusuario')
+                    ->where('producto.tipo','=','RESTAURANTE')
+                    ->where('producto.idusuario','=',$id)
                     ->get();
         
     }
@@ -63,6 +74,14 @@ class ProductoController extends Controller
                     ->get();
     }
 
+    public function producto_materia_restaurante($iduser,$id){
+        return Producto::select('producto.*')
+                    ->where('idmateria','=',$id)
+                    ->where('estado','=','ACTIVO')
+                    ->where('producto.idusuario','=',$iduser)
+                    ->get();
+    }
+
     
     public function store(Request $request){
     	try{
@@ -74,6 +93,7 @@ class ProductoController extends Controller
     		$producto->estado = 'ACTIVO';
     		$producto->idmateria = $data['idmateria'];
             $producto->tipo = $data['tipo'];
+            $producto->idusuario = $data['idusuario'];
     		$producto->save();
 
     		$producto->imagen = "http://".$_SERVER['HTTP_HOST'].'/img/producto/'.$producto->id.".jpg";

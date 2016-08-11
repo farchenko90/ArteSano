@@ -98,17 +98,16 @@
 				      	<div class="collapsible-body">
 	                        <div class="row">
 	                            <span ng-repeat="producto in arrayProducto">
-	                            			<div class="col s3">
-			                                    <center>
-			                                    	<a href="javascript:#">
-			                                    		<img  style="padding-top: 5px;" ng-click="almuerzos(producto)" src="{{producto.imagen}}" width="50" height="50" >
-			                                    	</a>
-			                                    </center>
-			                                    <center>
-			                                    	<p style="color: green;margin-top: -25px;font-size: 10px;">{{producto.nombre}}</p>
-			                                    </center>
-		                                	</div>
-	                            	
+                            			<div class="col s3">
+		                                    <center>
+		                                    	<a href="javascript:#">
+		                                    		<img  style="padding-top: 5px;" ng-click="adicionar(producto,1)" src="{{producto.imagen}}" width="50" height="50" >
+		                                    	</a>
+		                                    </center>
+		                                    <center>
+		                                    	<p style="color: green;margin-top: -25px;font-size: 10px;">{{producto.nombre}}</p>
+		                                    </center>
+	                                	</div>
 	                            </span>
 	                        </div>    
 	                    </div>
@@ -144,7 +143,7 @@
 	                                <div class="col s3">
 	                                    <center>
 	                                    	<a href="javascript:#">
-	                                    		<img  style="padding-top: 5px;" ng-click="adicionar(producto)" src="{{producto.imagen}}" width="50" height="50">
+	                                    		<img  style="padding-top: 5px;" ng-click="adicionar(producto,2)" src="{{producto.imagen}}" width="50" height="50">
 	                                    	</a>
 	                                    </center>
 	                                    <center>
@@ -228,7 +227,7 @@
 	                                <div class="col s3">
 	                                    <center>
 	                                    	<a href="javascript:#">
-	                                    		<img  style="padding-top: 5px;" ng-click="almuerzos(producto)" src="{{producto.imagen}}" width="50" height="50">
+	                                    		<img  style="padding-top: 5px;" ng-click="adicionar(producto,6)" src="{{producto.imagen}}" width="50" height="50">
 	                                    	</a>
 	                                    </center>
 	                                    <center>
@@ -249,7 +248,7 @@
 	                                <div class="col s3">
 	                                    <center>
 	                                    	<a href="javascript:#">
-	                                    		<img  style="padding-top: 5px;" ng-click="almuerzos(producto)" src="{{producto.imagen}}" width="50" height="50">
+	                                    		<img  style="padding-top: 5px;" ng-click="adicionar(producto,7)" src="{{producto.imagen}}" width="50" height="50">
 	                                    	</a>
 	                                    </center>
 	                                    <center>
@@ -408,7 +407,7 @@
 		            <p class="text-center">
 		            	<img src="./images/artesanoicono.png" width="100px;"><br>
 		                <span>ARTESANO NATURAL</span><br>
-		                <span>NIT: </span><br>
+		                <span>NIT: {{nit}}</span><br>
 		                <span id ="fecha">{{CurrentDate | date:'dd-MM-yyyy'}}</span><br>
 		            </p>            
         		</div>
@@ -478,8 +477,10 @@
   					</table>
 
   				</div><br>
+  				<center>{{Direccion}}</center>
+  				<center>{{Celular}}</center>
   				<center><span>VALLEDUPAR - CESAR</span></center>
-  				<center><span>www.artesano.com</span></center>
+  				<center><span>www.artesanocafe.com</span></center>
         	</div>
 
 		</div>

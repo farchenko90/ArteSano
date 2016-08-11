@@ -31,6 +31,9 @@
 						<td title="'VALOR'">
 							{{producto.valor | currency}}
 						</td>
+						<td title="'USUARIO'">
+							{{producto.nombre_apellido}}
+						</td>
 						<td title="'ESTADO'">
 							<span ng-if="producto.estado == 'ACTIVO'">
 								<p style="color: green;">{{producto.estado}}</p>
@@ -173,6 +176,7 @@
 	$(document).ready(function(){
     	$('ul.tabs').tabs();
     	$('.tooltipped').tooltip({delay: 50});
+    	$('select').material_select();
   	});
   	function archivo(evt) {
         var files = evt.target.files; // FileList object

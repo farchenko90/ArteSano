@@ -37,9 +37,93 @@
 								{{diario.fecha}}	
 							</span>
 						</td>
+						<td title="'IMPRIMIR'">
+							<span>
+								<a href="" ng-click="imprimir(diario)">
+									<i class="material-icons prefix">print</i>
+								</a>
+							</span>
+						</td>
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div id="modalacierre" class="modal modal-fixed-footer">
+			<div class="modal-content">
+      			<center><h4>{{title}}</h4></center>
+      			<div class="row">
+      				<div class="col s12"></div>
+      				<div class="col s12"></div>
+      				<div class="col s12">
+      					<h6>USUARIO: {{Imprimir.nombre_apellido}}</h6>
+      				</div><br><br>
+      				<div class="col s12">
+      					<h6>TOTAL VENDIDO: {{Imprimir.total | currency}}</h6>
+      				</div>
+      				<div class="col s12">
+      					<h6>TOTAL EN TARJETA: {{Tarjeta | currency}}</h6>
+      				</div>
+      				<div class="col s12">
+      					<h6>SUMA TOTAL: {{sumatotal | currency}}</h6>
+      				</div>
+      			</div>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="imprimirfactura()">Imprimir</a>
+    		</div>
+		</div>
+		<!--############################### IMPRESION ##########################-->
+		<div class="modal" id="impresion" style='line-height:11px;'>
+			<div class="row" style="text-align: center">
+	            <p class="text-center">
+	            	<img src="./images/artesanoicono.png" width="100px;"><br>
+	                <span>ARTESANO NATURAL</span><br>
+	                <span>NIT: {{nit}}</span><br>
+	                <span id ="fecha">{{CurrentDate | date:'dd-MM-yyyy'}}</span><br>
+	            </p>            
+    		</div>
+    		<table width='100%' border='0'>
+    			<thead>
+    				<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">Ttal Vendido</th>
+					<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">Ttal Tarjeta</th>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td style="font-size:10px;">
+                    		{{Imprimir.total | currency}}
+                		</td>
+                		<td style="font-size:10px;">
+                    		{{Tarjeta | currency}}
+                		</td>
+    				</tr>
+    			</tbody>
+			</table>
+			<div style='margin-top:10px; border-bottom-style: dotted;border-top-style: dotted; 
+  	border-width: 2px; '>
+  				<table width="100%">
+  					<tr>
+						<td>
+							<label for="" style="font-size:10px;font-weight:500">SUMA TOTAL:  
+							</label>
+						</td>
+						<td align="rigth">
+							<label style="font-size:10px;">{{sumatotal | currency}} </label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="" style="font-size:10px;font-weight:500">USUARIO: {{Imprimir.nombre_apellido}}
+							</label>
+						</td>
+						<td align="rigth">
+							<label style="font-size:10px;"><h6>{{Imprimir.user}}</h6> </label>
+						</td>
+					</tr>
+  				</table>
+  			</div>
+			<center><span>VALLEDUPAR - CESAR</span></center>
+  			<center><span>www.artesanocafe.com</span></center>
 		</div>
 		<div id="ftarjeta">
 			<div style="background-color: #FFF;">

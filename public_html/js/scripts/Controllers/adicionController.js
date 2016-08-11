@@ -5,6 +5,7 @@ app.controller('adicionController', function ($scope,ngTableParams,$filter,inici
     loadProducto();
     loadAdicionales();
     loadMateria();
+    $scope.Id = session.getId();
 
 	function inicialproducto(){
         $scope.producto = {
@@ -79,18 +80,37 @@ app.controller('adicionController', function ($scope,ngTableParams,$filter,inici
     }
 
     function loadProducto(){
-        
-        var promiseGet = inicioService.getProductorestaurante(); //The Method Call from service
+
+        if($scope.Id == 2){
+
+            var promiseGet = inicioService.getAllRestaurante(); //The Method Call from service
     
-        promiseGet.then(function (pl) {
-            $scope.arrayProducto = pl.data;
-            $scope.totalItems = $scope.arrayProducto.length;
-            crearNgTabla();
-        },
-        
-        function (errorPl) {
-            console.log('failure loading Tipo', errorPl);
-        });
+            promiseGet.then(function (pl) {
+                $scope.arrayProducto = pl.data;
+                //alert($scope.arrayProducto);
+                $scope.totalItems = $scope.arrayProducto.length;
+                crearNgTabla();
+            },
+            
+            function (errorPl) {
+                console.log('failure loading Tipo', errorPl);
+            });
+
+        }else{
+
+            var promiseGet = inicioService.getProductorestaurante($scope.Id); //The Method Call from service
+    
+            promiseGet.then(function (pl) {
+                $scope.arrayProducto = pl.data;
+                $scope.totalItems = $scope.arrayProducto.length;
+                crearNgTabla();
+            },
+            
+            function (errorPl) {
+                console.log('failure loading Tipo', errorPl);
+            });
+
+        }
         
     }
 
@@ -159,36 +179,44 @@ app.controller('adicionController', function ($scope,ngTableParams,$filter,inici
     }
 
     $scope.guardarproducto = function(){
-        var formData = new FormData();
-        formData.append('imagen',$scope.producto.imagen);
-        formData.append('nombre',$scope.producto.nombre.toUpperCase());
-        formData.append('valor',$scope.producto.valor);
-        formData.append('tipo','RESTAURANTE');
-        formData.append('idmateria',document.getElementsByName('marca')[0].value);
-
         
-        var promisePost = inicioService.postproducto(formData);
+        if(document.getElementsByName('marca')[0].value == ""){
+            Materialize.toast("Error la marca es obligatoria",2000,'rounded');
+        }else{
 
-            promisePost.then(function (d) {
+            var formData = new FormData();
+            formData.append('imagen',$scope.producto.imagen);
+            formData.append('nombre',$scope.producto.nombre.toUpperCase());
+            formData.append('valor',$scope.producto.valor);
+            formData.append('tipo','RESTAURANTE');
+            formData.append('idusuario',$scope.Id);
+            formData.append('idmateria',document.getElementsByName('marca')[0].value);
 
-                Materialize.toast(JSON.stringify(d.data.message),2000,'rounded');
-                loadProducto();
-                $('#modal1').closeModal();
+            
+            var promisePost = inicioService.postproducto(formData);
 
-            }, function (err) {
+                promisePost.then(function (d) {
 
-                if(err.status == 401){
-                    alert(err.data.message);
-                    console.log(err.data.exception);
+                    Materialize.toast(JSON.stringify(d.data.message),2000,'rounded');
+                    loadProducto();
+                    $('#modal1').closeModal();
 
-                }else{
+                }, function (err) {
 
-                    alert("Error Al procesar Solicitud");
+                    if(err.status == 401){
+                        alert(err.data.message);
+                        console.log(err.data.exception);
 
-                }
+                    }else{
 
-                console.log("Some Error Occured "+ JSON.stringify(err));
-            });
+                        alert("Error Al procesar Solicitud");
+
+                    }
+
+                    console.log("Some Error Occured "+ JSON.stringify(err));
+                });
+
+        }   
 
     }
 

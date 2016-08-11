@@ -10,6 +10,7 @@ use App\Usuario;
 use App\Inventario;
 use DB;
 use Carbon\Carbon;
+use App\Venta;
 
 class CreditoController extends Controller
 {
@@ -47,7 +48,19 @@ class CreditoController extends Controller
                     $inventario->cantidad = $cantidad;
                     $inventario->save();
                 }
+
+                $venta = new Venta();
+                $venta->productos = $data['producto'][$i]['productos'];
+                $venta->valor = $data['producto'][$i]['valor'];
+                $venta->cantidad = $data['producto'][$i]['cantidad'];
+                $venta->fecha = $date->toDateString();
+                $venta->idproducto = $data['producto'][$i]['id'];
+                $venta->idusuario = $data['idusuario'];
+                $venta->idcredito = $credito->id;
+                $venta->save();
             }
+
+            
 
     		return JsonResponse::create(array('std' => 1,'message' => "Credito Guardado Correctamente", "request" =>$data), 200);
 

@@ -2,6 +2,7 @@ app.controller('configuracionController', function ($scope,configuracionService)
 
 	$scope.arrayRestaurante = [];
     $scope.perfil = session.getIdperfil();
+    $scope.Id = session.getId();
 	loadRestaurante();
 	initialize();
 
@@ -13,7 +14,7 @@ app.controller('configuracionController', function ($scope,configuracionService)
 
 	function loadRestaurante(){
         if($scope.perfil == 1){
-            var promiseGet = configuracionService.getRestaurante(); //The Method Call from service
+            var promiseGet = configuracionService.getRestaurante($scope.Id); //The Method Call from service
     
             promiseGet.then(function (pl) {
                 $scope.arrayRestaurante = pl.data;

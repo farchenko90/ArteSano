@@ -22,11 +22,19 @@ class AdicionalController extends Controller
         return Adicional::find($id);
     }
 
-    public function adicional(){
+    public function adicional($idmateria){
     	return Adicional::select('adicionale.*','materia.nombre as materia')
     			->join('materia','materia.id','=','adicionale.idmateria')
                 ->where('materia.campo','=','RESTAURANTE')
+                ->where('adicionale.idmateria','=',$idmateria)
     			->get();
+    }
+
+    public function getAdicionRestaurante(){
+        return Adicional::select('adicionale.*','materia.nombre as materia')
+                ->join('materia','materia.id','=','adicionale.idmateria')
+                ->where('materia.campo','=','RESTAURANTE')
+                ->get();
     }
 
     public function adicionalheladeria(){

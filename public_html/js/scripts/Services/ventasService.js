@@ -5,18 +5,23 @@ app.service("ventasService", function ($http) {
         return req;        
     };
 
+    this.getIdRestaurante = function (iduser,id) {        
+        var req = $http.get(uri+'/api/usuario/'+iduser+'/producto/'+id);       
+        return req;        
+    };
+
     this.adicionales = function () {        
         var req = $http.get(uri+'/api/adicional');       
         return req;        
     }; 
 
-    this.adicionalrestaurante= function () {        
-        var req = $http.get(uri+'/api/adicion');       
+    this.adicionalrestaurante= function (id) {        
+        var req = $http.get(uri+'/api/adicion/'+id);       
         return req;        
     }; 
 
     this.adicionalheladeria = function () {        
-        var req = $http.get(uri+'/api/adicion/heladeria');       
+        var req = $http.get(uri+'/api/heladeria/adicion');       
         return req;        
     }; 
 

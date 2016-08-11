@@ -1,6 +1,8 @@
 <?php 
 	
-	Route::get('api/producto/materia','ProductoController@productorestaurante');
+	Route::get('api/allrestaurante','ProductoController@Allproductorestaurante');
+
+	Route::get('api/producto/materia/{id}','ProductoController@productorestaurante');
 
 	Route::get('api/producto/panaderia','ProductoController@productopanaderia');
 
@@ -11,6 +13,8 @@
 	Route::post("api/producto/imagen","ProductoController@storeImage");
 
 	Route::get('api/imagen/materia/{id}','ProductoController@producto_materia');
+
+	Route::get('api/usuario/{iduser}/producto/{id}','ProductoController@producto_materia_restaurante');
 
 	Route::put('api/estado/galeria/{id}','ProductoController@cambiarestadogaleria');	
 

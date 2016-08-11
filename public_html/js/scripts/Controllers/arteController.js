@@ -3,7 +3,7 @@ app.controller('arteController', function ($scope,arteService) {
 	$scope.arrayGaleria = [];
 	$scope.Imagen;
 
-	galeria(11);
+	galeria(8);
 
 	$scope.Artesano = {
 		usuario: "",

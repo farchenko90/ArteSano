@@ -26,13 +26,13 @@ app.controller('ventasController', function ($scope,ventasService) {
     $scope.idperfil = session.getIdperfil();
     $scope.Idusuario = session.getId();
     
-
-    loadadicionales();
+    loadadicionheladeria();
+    
     
 
     $scope.loadproducto = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayProducto = pl.data;
@@ -47,7 +47,7 @@ app.controller('ventasController', function ($scope,ventasService) {
     
     $scope.loadproductorapidas = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayRapidas = pl.data;
@@ -61,7 +61,7 @@ app.controller('ventasController', function ($scope,ventasService) {
 
     $scope.loadproductobebidas = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayBebidas = pl.data;
@@ -75,7 +75,7 @@ app.controller('ventasController', function ($scope,ventasService) {
 
     $scope.loadproductopostres = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayPostres = pl.data;
@@ -103,7 +103,7 @@ app.controller('ventasController', function ($scope,ventasService) {
 
     $scope.loadtienda = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayTienda = pl.data;
@@ -117,7 +117,7 @@ app.controller('ventasController', function ($scope,ventasService) {
 
     $scope.loaddesayuno = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayDesayuno = pl.data;
@@ -131,7 +131,7 @@ app.controller('ventasController', function ($scope,ventasService) {
 
     $scope.loadensalada = function(id){
         
-        var promiseGet = ventasService.getId(id); //The Method Call from service
+        var promiseGet = ventasService.getIdRestaurante($scope.Idusuario,id); //The Method Call from service
     
         promiseGet.then(function (pl) {
             $scope.arrayEnsalada = pl.data;
@@ -199,19 +199,8 @@ app.controller('ventasController', function ($scope,ventasService) {
         
     }
 
-    function loadadicionales(){
-        
-        if($scope.idperfil == 1){
-            var promiseGet = ventasService.adicionalrestaurante(); //The Method Call from service
-    
-            promiseGet.then(function (pl) {
-                $scope.arrayAdicion = pl.data;
-            },
-            
-            function (errorPl) {
-                console.log('failure loading Tipo', errorPl);
-            });   
-        }else if($scope.idperfil == 2){
+    function loadadicionheladeria(){
+        if($scope.idperfil == 2){
             var promiseGet = ventasService.adicionalheladeria(); //The Method Call from service
     
             promiseGet.then(function (pl) {
@@ -222,7 +211,21 @@ app.controller('ventasController', function ($scope,ventasService) {
                 console.log('failure loading Tipo', errorPl);
             });   
         }
+    }
+
+    function loadadicionales(id){
         
+        if($scope.idperfil == 1){
+            var promiseGet = ventasService.adicionalrestaurante(id); //The Method Call from service
+    
+            promiseGet.then(function (pl) {
+                $scope.arrayAdicion = pl.data;
+            },
+            
+            function (errorPl) {
+                console.log('failure loading Tipo', errorPl);
+            });   
+        }
         
     }
 
@@ -305,7 +308,8 @@ app.controller('ventasController', function ($scope,ventasService) {
         
     }    
 
-    $scope.adicionar = function(producto){
+    $scope.adicionar = function(producto,id){
+        loadadicionales(id);
         $scope.title = "Agregar Adicionales";
         $scope.Producto = producto;
         $('#modaladicion').openModal();
@@ -411,6 +415,9 @@ app.controller('ventasController', function ($scope,ventasService) {
     $scope.edittarjeta = false;
     $scope.std;
     $scope.msg;
+    $scope.nit = "77.092.443-3";
+    $scope.Celular = session.getCelular();
+    $scope.Direccion = session.getDireccion();
     
     $scope.modalcredito = function(){
         if($scope.total == 0){
@@ -519,6 +526,9 @@ app.controller('ventasController', function ($scope,ventasService) {
         for(var i=0;i<$scope.arrayVentas.length;i++){
             var object = {
                 id:  $scope.arrayVentas[i].idproducto,
+                cantidad: $scope.arrayVentas[i].cantidad,
+                productos: $scope.arrayVentas[i].producto,
+                valor: $scope.arrayVentas[i].subtotal,
                 cantidad: $scope.arrayVentas[i].cantidad
             }
             $scope.produ.push(object);
@@ -574,6 +584,9 @@ app.controller('ventasController', function ($scope,ventasService) {
         for(var i=0;i<$scope.arrayVentas.length;i++){
             var object = {
                 id:  $scope.arrayVentas[i].idproducto,
+                cantidad: $scope.arrayVentas[i].cantidad,
+                productos: $scope.arrayVentas[i].producto,
+                valor: $scope.arrayVentas[i].subtotal,
                 cantidad: $scope.arrayVentas[i].cantidad
             }
             $scope.produ.push(object);
@@ -623,7 +636,7 @@ app.controller('ventasController', function ($scope,ventasService) {
         //mywindow.document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>');
         
         mywindow.document.write('<style type="text/css">');
-        mywindow.document.write('@media print {  @page { margin-top: 0mm;margin-left: 1mm;margin-right: 5mm;margin-bottom: 7mm; padding-bottom: 5px;}}');
+        mywindow.document.write('@media print {  @page { margin-top: 0mm;margin-left: 1mm;margin-right: 5mm;margin-bottom: 7mm; padding-bottom: 5px;page-break-after: always;}}');
         mywindow.document.write("body{font-family: 'Arial'};");
         mywindow.document.write('</style></head><body onfocus="javascript:gio();">');
         mywindow.document.write(data);
@@ -631,7 +644,7 @@ app.controller('ventasController', function ($scope,ventasService) {
         mywindow.document.write('</body></html>');
         setTimeout(function(){
             mywindow.print();
-            
+            mywindow.print();
             mywindow.close();
                         
                         

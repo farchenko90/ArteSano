@@ -1,7 +1,7 @@
 app.service("configuracionService", function ($http) {
 
-	this.getRestaurante = function () {        
-        var req = $http.get(uri+'/api/producto/materia');       
+	this.getRestaurante = function (id) {        
+        var req = $http.get(uri+'/api/producto/materia/'+id);       
         return req;        
     };
 

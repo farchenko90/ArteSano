@@ -55,8 +55,8 @@ app.service("inicioService", function ($http) {
         return req;       
     };
 
-    this.getProductorestaurante = function () {        
-        var req = $http.get(uri+'/api/producto/materia');       
+    this.getProductorestaurante = function (id) {        
+        var req = $http.get(uri+'/api/producto/materia/'+id);       
         return req;        
     }; 
 
@@ -76,12 +76,12 @@ app.service("inicioService", function ($http) {
     }; 
 
     this.getAdicionales = function () {        
-        var req = $http.get(uri+'/api/adicion');       
+        var req = $http.get(uri+'/api/restaurante/adicion');       
         return req;        
     };
 
     this.getAdicionalesheladeria = function () {        
-        var req = $http.get(uri+'/api/adicion/heladeria');       
+        var req = $http.get(uri+'/api/heladeria/adicion');       
         return req;        
     };
 
@@ -97,6 +97,11 @@ app.service("inicioService", function ($http) {
 
     this.putEstado = function (id,object) {        
         var req = $http.put(uri+'/api/cambiar/estado/'+id,object);       
+        return req;        
+    };
+
+    this.getAllRestaurante = function () {        
+        var req = $http.get(uri+'/api/allrestaurante');       
         return req;        
     };
 

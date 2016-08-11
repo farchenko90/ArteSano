@@ -2,6 +2,7 @@ app.controller('heladeriaController', function ($scope,ngTableParams,$filter,ini
 
     $scope.arrayProducto = [];
     $scope.arrayMateria = [];
+    $scope.Id = session.getId();
 
 	inicialproducto();
 	loadMateria();
@@ -164,6 +165,7 @@ app.controller('heladeriaController', function ($scope,ngTableParams,$filter,ini
         formData.append('nombre',$scope.producto.nombre.toUpperCase());
         formData.append('valor',$scope.producto.valor);
         formData.append('tipo','HELADERIA');
+        formData.append('idusuario',$scope.Id);
         formData.append('idmateria',document.getElementsByName('marca')[0].value);
 
         

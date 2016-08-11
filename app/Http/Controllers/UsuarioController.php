@@ -75,7 +75,7 @@ class UsuarioController extends Controller
 
             $clave =   Crypt::decrypt($user["contrasena"]);
 
-            $usuario = DB::select("Select usuario.nombre_apellido,usuario.celular,usuario.correo,usuario.usuario,GROUP_CONCAT(tipo_permiso.idpermiso SEPARATOR ',') as permisos,usuario.id,tipo.nombre as tipouser,usuario.idperfil from usuario inner join tipo_permiso on tipo_permiso.idusuario = usuario.id 
+            $usuario = DB::select("Select usuario.nombre_apellido,usuario.celular,usuario.correo,usuario.usuario,GROUP_CONCAT(tipo_permiso.idpermiso SEPARATOR ',') as permisos,usuario.id,tipo.nombre as tipouser,usuario.idperfil,usuario.direccion from usuario inner join tipo_permiso on tipo_permiso.idusuario = usuario.id 
                 inner join tipo on tipo.id = usuario.idtipo 
                 where usuario.id = ".$user['id']);
 

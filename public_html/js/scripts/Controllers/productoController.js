@@ -2,6 +2,7 @@ app.controller('productoController', function ($scope,ngTableParams,$filter,inic
 
     $scope.arrayProducto = [];
     $scope.arrayMateria = [];
+    $scope.Id = session.getId();
 
 	inicialproducto();
 	loadMateria();
@@ -98,6 +99,7 @@ app.controller('productoController', function ($scope,ngTableParams,$filter,inic
         formData.append('nombre',$scope.producto.nombre.toUpperCase());
         formData.append('valor',$scope.producto.valor);
         formData.append('tipo','PANADERIA');
+        formData.append('idusuario',$scope.Id);
         formData.append('idmateria',document.getElementsByName('marca')[0].value);
 
         
