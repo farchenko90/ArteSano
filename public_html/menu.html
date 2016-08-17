@@ -25,6 +25,8 @@
 	
 	<script type="text/javascript" src="js/jquery-2.1.1.js"></script> 
 
+    <script type="text/javascript" src="js/chart.min.js"></script> 
+
 	<script type="text/javascript" src="js/plugins.js"></script>
 	<script src="js/select2.min.js" type="text/javascript"></script>   
 
@@ -57,6 +59,9 @@
     <script src="js/scripts/Controllers/consultaparcialfechaController.js" type="text/javascript"></script>
     <script src="js/scripts/Controllers/cajaController.js" type="text/javascript"></script>
     <script src="js/scripts/Controllers/inventarioController.js" type="text/javascript"></script>
+    <script src="js/scripts/Controllers/detalladaController.js"></script>
+    <script src="js/scripts/Controllers/consultadetalleController.js"></script>
+    <script src="js/scripts/Controllers/consultacierreControlle.js"></script>
 
     <script src="js/scripts/appUsuario.js" type="text/javascript"></script>
 
@@ -237,6 +242,18 @@
       									Consulta Por Fecha
       								</a>
       							</li>
+                                <li>
+                                    <a href="#consulta/detallada" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Reporte Detallado
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#consulta/cierre_caja" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Consulta Cierre Caja
+                                    </a>
+                                </li>
       						</ul>
       						<ul ng-if="tipouser == 'EMPLEADO'">
       							<li>
@@ -251,6 +268,18 @@
       									Consulta Por Fecha
       								</a>
       							</li>
+                                <li>
+                                    <a href="#consulta/detalles" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Reporte Detallado
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#consulta/cierre_caja" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Consulta Cierre Caja
+                                    </a>
+                                </li>
       						</ul>
       					</div>
       				</li>

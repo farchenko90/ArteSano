@@ -1,0 +1,99 @@
+<div ng-controller="detalladaController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div style="background-color: #FFF;height: 70px;" class="z-depth-1">
+			<span ng-if="tipoUser == 'ADMINISTRADOR'">
+				<div class="col s12 m12 l3">
+					<center>
+						<h6>
+							<p style="font-size: 18px">Usuarios: </p>
+						</h6>
+					</center>
+				</div>
+				<div  class="col s12 m12 l3" style="margin-top: 10px">
+					<select class="browser-default" ng-model="User.perfil">
+						<option selected disabled>Seleccionar</option>
+						<option ng-repeat="user in arrayUsuario" value="{{user.id}}">{{user.nombre_apellido}}</option>
+					</select>
+				</div>
+			</span>
+			
+			<div class="input-field col s3">
+				<label for="first_name2">Fecha</label>
+				<input type="date" name="finicial" ng-model="User.fecha" for="first_name2" class="datepicker">
+			</div>
+
+			<div class="input-field col s2">
+				<a class="btn waves-effect waves-light indigo" ng-click="Detallado()">Buscar</a>
+			</div>
+			
+		</div>
+		<div class="col s8">
+			<div class="card">
+				<div class="card-content">
+					<center><h5>Venta Detallada</h5></center>
+					<table class="striped responsive-table">
+						<thead>
+							<tr>
+								<th>Materia</th>
+								<th>Producto</th>
+								<th>Cantidad Vendida</th>
+								<th>Usuario</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="detalle in arrayDetallado">
+								<td>{{detalle.materia}}</td>
+								<td>{{detalle.nombre}}</td>
+								<td>{{detalle.suma}}</td>
+								<td>{{detalle.nombre_apellido}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col s4">
+				<div class="card">
+					<div class="card-content">
+						<center><h5>Detalles por Materia</h5></center>
+						<div id="chartjs-polor-chart" class="section">
+	              			<!--<h4 class="header">Polar Area Chart</h4>-->
+		              		<div class="row">
+		                		<div class="col s12 m8 l9">
+		                  			<div class="sample-chart-wrapper">
+		                    			<canvas id="polar-chart-sample" height="360"></canvas>
+		                  			</div>
+		                		</div>
+		              		</div>
+		            	</div>
+		            	<table class="striped responsive-table">
+		            		<thead>
+								<tr>
+									<th>Materia</th>
+									<th>Cantidad</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="detalle in arrayDetalladoMateria">
+									<td>{{detalle.label}}</td>
+									<td>{{detalle.value}}</td>
+								</tr>
+							</tbody>
+		            	</table>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+    	
+    	$('.datepicker').pickadate({
+    		selectMonths: true, // Creates a dropdown to control month
+    		selectYears: 15, // Creates a dropdown of 15 years to control year
+    		format: 'yyyy-mm-dd'
+  		});
+
+  	});
+</script>

@@ -198,10 +198,13 @@ app.controller('consultaController', function ($scope,consultaService,ngTablePar
     $scope.guardar = function(){
 
         var object = {
-            total:             $scope.sumatotal,
-            idusuario:         $scope.Imprimir.iduser
+            tarjeta:            $scope.Tarjeta,
+            credito:            $scope.Imprimir.total,
+            caja:               $scope.totalCaja,
+            descuento:          $scope.Descuento,
+            total:              $scope.sumatotal,
+            idusuario:          $scope.Imprimir.iduser
         }; 
-        
         
         var promisePost  = consultaService.postCierrecaja(object);
         
@@ -237,6 +240,7 @@ app.controller('consultaController', function ($scope,consultaService,ngTablePar
     ///////////////////////Impresion//////////////
     
     $scope.CurrentDate = new Date();
+    $scope.nit = "77.092.443-3";
 
     function imprimir () {
         

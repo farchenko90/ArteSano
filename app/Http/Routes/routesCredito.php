@@ -16,4 +16,6 @@
 
 	Route::get('api/fecha/credito/{id}/{finicial}/{ffinal}','CreditoController@creditopanaderiafecha');
 
+	Route::get('api/tickets/usuario/{idusuario}','CreditoController@tickets_diario');
+
 	Route::resource('api/credito', 'CreditoController');

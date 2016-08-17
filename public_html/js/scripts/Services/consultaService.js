@@ -55,5 +55,24 @@ app.service("consultaService", function ($http) {
         return req;        
     };
 
+    this.getDetallado = function (finicial,idusuario) {        
+        var req = $http.get(uri+'/api/detallado/'+finicial+'/'+idusuario);       
+        return req;        
+    };
+
+    this.getMateriaDetallado = function (finicial,idusuario) {        
+        var req = $http.get(uri+'/api/detalle/materia/'+finicial+'/'+idusuario);       
+        return req;        
+    };
+
+    this.getAlluser = function () {        
+        var req = $http.get(uri+'/api/usuario');       
+        return req;        
+    };
+
+    this.getAllCierrecaja = function (idusuario) {        
+        var req = $http.get(uri+'/api/cierre_caja/'+idusuario);       
+        return req;        
+    };    
 
 });

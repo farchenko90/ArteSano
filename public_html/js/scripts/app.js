@@ -49,6 +49,15 @@ var app;
                 .when('/inventario', {
                     templateUrl: 'pages/inventario.html'
                 })
+                .when('/consulta/detallada', {
+                    templateUrl: 'consultas/detallada.html'
+                })
+                .when('/consulta/detalles', {
+                    templateUrl: 'consultas/detalles.html'
+                })
+                .when('/consulta/cierre_caja', {
+                    templateUrl: 'consultas/consultacierre.html'
+                })
                 .otherwise({
                     redirectTo:"bienvenida"
                 }); 

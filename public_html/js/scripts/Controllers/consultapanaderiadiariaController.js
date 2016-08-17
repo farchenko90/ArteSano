@@ -164,8 +164,12 @@ app.controller('consultapanaderiadiariaController', function ($scope,consultaSer
     $scope.guardar = function(){
 
         var object = {
-            total:             $scope.sumatotal,
-            idusuario:         $scope.id
+            tarjeta:            $scope.Tarjeta,
+            credito:            $scope.Imprimir.total,
+            caja:               $scope.totalCaja,
+            descuento:          $scope.Descuento,
+            total:              $scope.sumatotal,
+            idusuario:          $scope.id
         }; 
         
         

@@ -1,0 +1,119 @@
+<div ng-controller="consultacierreControlle" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div style="background-color: #FFF;height: 70px;" class="z-depth-1" ng-if="tipoUser == 'ADMINISTRADOR'">
+			<div class="col s12 m12 l3">
+				<center>
+					<h6>
+						<p style="font-size: 18px;margin-letf: 120px">Usuarios: </p>
+					</h6>
+				</center>
+			</div>
+			<div  class="col s12 m12 l3" style="margin-top: 10px">
+				<select class="browser-default" ng-model="User.perfil">
+					<option selected disabled>Seleccionar</option>
+					<option ng-repeat="user in arrayUsuario" value="{{user.id}}">{{user.nombre_apellido}}</option>
+				</select>
+			</div>
+			<div class="input-field col s2">
+				<a class="btn waves-effect waves-light indigo" ng-click="Cierre()">Buscar</a>
+			</div>
+		</div>
+		<div class="col s12">
+			<div class="card">
+				<div class="card-content">
+					<center><h5>Cierres De Caja</h5></center>
+					<table class="striped responsive-table">
+						<thead>
+							<tr>
+								<th>Credito</th>
+								<th>Tarjeta</th>
+								<th>Caja</th>
+								<th>Descuento</th>
+								<th>Total Diario</th>
+								<th>Fecha</th>
+								<th>Imprimir</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="caja in ArrayCaja">
+								<td>{{caja.credito | currency}}</td>
+								<td>{{caja.tarjeta | currency}}</td>
+								<td>{{caja.caja | currency}}</td>
+								<td>{{caja.descuento | currency}}</td>
+								<td>{{caja.total | currency}}</td>
+								<td>{{caja.fecha}}</td>
+								<td>
+									<span>
+										<a href="" ng-click="imprimir(caja)">
+											<i class="material-icons prefix">print</i>
+										</a>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--############################### Impresion ##########################-->
+		<div class="modal" id="impresion" style='line-height:11px;'>
+			<div class="row" style="text-align: center">
+	            <p class="text-center">
+	            	<img src="./images/artesanoicono.png" width="100px;"><br>
+	                <span>ARTESANO NATURAL</span><br>
+	                <span>NIT: {{nit}}</span><br>
+	                <span id ="fecha">{{Caja.fecha}}</span><br>
+	            </p>            
+    		</div>
+    		<table width='100%' border='0'>
+    			<thead>
+    				<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">Ttal Vendido</th>
+					<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">Ttal Tarjeta</th>
+					<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">En Caja</th>
+					<th style="height:30px;font-size:9px;border-bottom-style: dotted;border-width: 2px;border-top-style: dotted; ">Retirado</th>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td style="font-size:10px;">
+                    		{{Caja.credito | currency}}
+                		</td>
+                		<td style="font-size:10px;">
+                    		{{Caja.tarjeta | currency}}
+                		</td>
+                		<td style="font-size:10px;">
+                    		{{Caja.caja | currency}}
+                		</td>
+                		<td style="font-size:10px;">
+                    		{{Caja.descuento | currency}}
+                		</td>
+    				</tr>
+    			</tbody>
+			</table>
+			<div style='margin-top:10px; border-bottom-style: dotted;border-top-style: dotted; 
+  	border-width: 2px; '>
+  				<table width="100%">
+  					<tr>
+						<td>
+							<label for="" style="font-size:10px;font-weight:500">SUMA TOTAL:  
+							</label>
+						</td>
+						<td align="rigth">
+							<label style="font-size:10px;">{{Caja.total | currency}} </label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="" style="font-size:10px;font-weight:500">USUARIO:  
+							</label>
+						</td>
+						<td align="rigth">
+							<label style="font-size:10px;"><h6>{{Usuario}}</h6> </label>
+						</td>
+					</tr>
+  				</table>
+  			</div>
+			<center><span>VALLEDUPAR - CESAR</span></center>
+  			<center><span>www.artesanocafe.com</span></center>
+		</div>
+	</div>
+</div>

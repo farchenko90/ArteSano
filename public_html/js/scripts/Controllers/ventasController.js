@@ -632,7 +632,7 @@ app.controller('ventasController', function ($scope,ventasService) {
         var data = jQuery('#impresion').html();
         var mywindow = window.open('', 'Ticket', 'height=600,width=600');
         mywindow.document.write('<html><head><title>Ticket</title>');
-        mywindow.document.write("<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>");
+        //mywindow.document.write("<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>");
         //mywindow.document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>');
         
         mywindow.document.write('<style type="text/css">');

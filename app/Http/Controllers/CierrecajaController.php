@@ -24,6 +24,10 @@ class CierrecajaController extends Controller
     		if($user == null){
 	    		
 	    		$cierre = new Cierrecaja();
+                $cierre->tarjeta = $data['tarjeta'];
+                $cierre->credito = $data['credito'];
+                $cierre->caja = $data['caja'];
+                $cierre->descuento = $data['descuento'];
 	    		$cierre->total = $data['total'];
 	    		$cierre->fecha = $date->toDateString();
 	            $cierre->idusuario = $data['idusuario'];
@@ -56,5 +60,13 @@ class CierrecajaController extends Controller
 			return JsonResponse::create(array('message' => "No se pudo guardar el cliente", "exception"=>$exc->getMessage(), "request" =>json_encode($data)), 401);
 		}
     }
+
+    public function cierrecajadiario($idusuario){
+        return Cierrecaja::select('*')
+                        ->orderBy('fecha', 'desc')
+                        ->where('idusuario','=',$idusuario)    
+                        ->get();
+    }
+
 
 }

@@ -168,4 +168,23 @@ class CreditoController extends Controller
             and credito.idusuario = ".$id));
     }
 
+    public function tickets_diario($idusuario){
+        $date = Carbon::now();
+        $credito = Credito::select('credito.*','usuario.nombre_apellido')
+                    ->join('usuario','usuario.id','=','credito.idusuario')
+                    ->where('credito.idusuario','=',$idusuario)
+                    ->where('credito.fecha','=',$date->toDateString())
+                    ->orderBy('credito.id', 'desc')
+                    ->get();
+        for($i=0;$i<count($credito);$i++){
+            $venta = Venta::select('venta.id','venta.valor','venta.cantidad','producto.nombre',
+                                    'producto.valor as unitario')
+                            ->join('producto','producto.id','=','venta.idproducto')
+                            ->where('venta.idcredito','=',$credito[$i]->id)
+                            ->get();
+            $credito[$i]['venta'] = $venta;
+        }
+        return $credito;
+    }
+
 }

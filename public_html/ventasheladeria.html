@@ -74,6 +74,11 @@
 								</ul>
 								<ul class="right hide-on-med-and-down">
 									<li data-constrainwidth="false" data-activates="dropdown1" class="dropdown-button">
+										<a href="javascript:abrirVentanaVentas();" class="colornavbar" style="font-size: 16px;font-family: 'Merriweather', serif;">TICKETS</a>
+									</li>
+								</ul>
+								<ul class="right hide-on-med-and-down">
+									<li data-constrainwidth="false" data-activates="dropdown1" class="dropdown-button">
 										<a href="" class="colornavbar" style="font-size: 16px;font-family: 'Merriweather', serif;">{{usuario}}</a>
 									</li>
 								</ul>
@@ -350,6 +355,9 @@
       		accordion : false 
     	});
   	});
+  	function abrirVentanaVentas() {
+  		window.open("ticket.html", 'popup1', 'width=' + $(window).width() + ',height=' + $(window).height());
+    }
 </script>
 
 </body>
