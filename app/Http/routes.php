@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,3 +29,6 @@ include 'Routes/routesDescontar.php';
 include 'Routes/routesCierrecaja.php';
 include 'Routes/routesInventario.php';
 include 'Routes/routesVenta.php';
+include 'Routes/routesInsumos.php';
+include 'Routes/routesPrecioproducto.php';
+include 'Routes/routesBolsa.php';

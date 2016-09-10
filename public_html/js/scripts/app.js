@@ -58,6 +58,12 @@ var app;
                 .when('/consulta/cierre_caja', {
                     templateUrl: 'consultas/consultacierre.html'
                 })
+                .when('/insumos', {
+                    templateUrl: 'pages/insumos.html'
+                })
+                .when('/bolsas', {
+                    templateUrl: 'pages/bolsas.html'
+                })
                 .otherwise({
                     redirectTo:"bienvenida"
                 }); 

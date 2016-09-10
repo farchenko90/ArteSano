@@ -1,0 +1,72 @@
+<div ng-controller="bolsaController" style="margin-left: 120px">
+	<div class="row container" style="margin-top: 70px">
+		<div class="col s12 ">
+			<ul class="tabs">
+				<li class="tab col s3"><a class="font-menu">Registrar Bolsas</a></li>
+			</ul>
+		</div>
+		<div id="regis" class="col s12">
+			<div style="background-color: #FFF;">
+				<div class="divider"></div><br>
+				<table>
+					<thead>
+						<td>NONBRE</td>
+						<td>PRECIO</td>
+						<td>PAQUETE</td>
+						<td>PRECIO UNIDAD</td>
+						<td>OPCIONES</td>
+					</thead>
+					<tbody>
+						<tr ng-repeat="bolsa in arrayBolsa">
+							<td>{{bolsa.nombre}}</td>
+							<td>{{bolsa.precio | currency}}</td>
+							<td>{{bolsa.paquete}}</td>
+							<td>{{bolsa.preciounidad | currency}}</td>
+							<td>
+								<center>
+									<a href="" ng-click="get(bolsa)">
+										<i class="material-icons prefix">mode_edit</i>
+									</a>
+								</center>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="fixed-action-btn" >
+					<a class="btn-floating btn-large waves-effect waves-light teal" style="float: left;" ng-click="nuevo()" title="Guardar"><i class="material-icons">add</i></a>	
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div id="modal1" class="modal modal-fixed-footer">
+    		<div class="modal-content">
+      			<center><h5>{{title}}</h5></center>
+      			<div class="row">
+      				<div class="input-field col s6">
+						<input type="text" maxlength="20" name="usuario" ng-model="bolsa.nombre">
+						<label class="{{active}}">Nombre</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" maxlength="20" name="usuario" ng-model="bolsa.precio">
+						<label class="{{active}}">Precio</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" maxlength="20" name="usuario" ng-model="bolsa.paquete">
+						<label class="{{active}}">Paquetes</label>
+					</div>
+      			</div>
+    		</div>
+    		<div class="modal-footer">
+      			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="guardar()" ng-hide="editMode">Guardar</a>
+      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-show="editMode" ng-click="modificar();">Actualizar</a>
+    		</div>
+  		</div>
+</div>
+<script>
+	$(document).ready(function(){
+    	$('ul.tabs').tabs();
+    	$('.tooltipped').tooltip({delay: 50});
+  	});
+</script>

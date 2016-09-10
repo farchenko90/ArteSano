@@ -1,0 +1,160 @@
+<div ng-controller="insumoController" style="margin-left: 120px">
+ 	<div class="row container" style="margin-top: 70px">
+		<div style="background-color: #FFF;height: 70px;" class="z-depth-1">
+			<div class="row">
+				<div class="col s3" style="margin-left: 340px">
+					<label>Producto</label>
+  						<select class="browser-default" ng-model="producto.modelo">
+						    <option value="" disabled selected>seleccion</option>
+						    <option ng-repeat="producto in arrayPanaderia" value="{{producto.id}}">
+						    	{{producto.nombre}}
+						    </option>
+  						</select>
+				</div>
+				<div class="col s3">
+					<div class="input-field col s2">
+						<a class="btn waves-effect waves-light indigo" ng-click="selecion()">Agregar</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<span ng-if="estado">
+					<div class="col s7">
+						<div class="card">
+							<div class="card-content">
+								<table>
+									<thead>
+										<td>ID</td>
+										<td>INGREDIENTE</td>
+										<td>PESO</td>
+										<td>PRECIO</td>
+										<td>OPCIONES</td>
+									</thead>
+									<tbody>
+										<tr ng-repeat="insumo in Insumos">
+											<td>{{insumo.id }}</td>
+											<td>{{insumo.ingredientes}}</td>
+											<td>{{insumo.peso}}</td>
+											<td>{{insumo.precio | currency}}</td>
+											<td>
+												<center>
+													<a href="" ng-click="update(insumo)">
+														<i class="material-icons prefix">mode_edit</i>
+													</a>
+												</center>
+											</td>
+										</tr>
+									</tbody>
+									<div class="divider"></div>
+									<tfoot>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>{{peso}}</td>
+											<td>{{preciototal | currency}}</td>
+											<td>
+												<a class="waves-effect waves-light btn" ng-click="vermodal()"><i class="material-icons left">attach_money</i>Calcular</a>
+											</td>
+										</tr>
+									</tfoot>
+								</table>	
+								
+							</div>
+						</div>
+					</div>
+					<div class="col s3">
+						<div class="card">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img src="{{Pan.imagen}}" width="300" height="230">
+							</div>
+							<div class="card-content">
+								<h6>{{Pan.nombre}}</h6>
+							</div>
+						</div>
+					</div>
+					<div class="fixed-action-btn" >
+						<a class="btn-floating btn-large waves-effect waves-light teal" style="float: left;margin-left: -230px" ng-click="nuevo()" title="Guardar"><i class="material-icons">add</i></a>	
+					</div>
+				</span>
+				<span ng-if="estadoprecio">
+					<div class="col s7">
+						<div class="card">
+							<div class="card-content">
+								<table>
+									<thead>
+										<td>PRECIO UNIDAD</td>
+										<td>PRECIO T. UNIDAD</td>
+										<td>PRECIO DISTRIBUIDOR</td>
+										<td>PRECIO CLIENTE</td>
+										<td>PRECIO PUBLICO</td>
+										<td>ADMINISTRACION</td>
+										<td>UTILIDAD</td>
+									</thead>
+									<tbody>
+										<tr ng-repeat="precio in precioproducto">
+											<td>{{precio.preciounidad | currency}}</td>
+											<td>{{precio.preciototalunidad | currency}}</td>
+											<td>{{precio.preciodistribuidor | currency}}</td>
+											<td>{{precio.preciocliente | currency}}</td>
+											<td>{{precio.preciopublico | currency}}</td>
+											<td>{{precio.administracion | currency}}</td>
+											<td>{{precio.utilidad | currency}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</span>
+			</div>
+			<div id="modal1" class="modal modal-fixed-footer">
+	    		<div class="modal-content">
+	      			<center><h5>{{title}}</h5></center>
+	      			<div class="row">
+	      				<div class="input-field col s6">
+							<input type="text" maxlength="20" name="usuario" ng-model="insumo.ingredientes">
+							<label class="{{active}}">Ingrediente</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text" maxlength="20" name="usuario" ng-model="insumo.peso">
+							<label class="{{active}}">Peso</label>
+						</div>
+						<div class="input-field col s6">
+							<input type="text" maxlength="20" name="usuario" ng-model="insumo.precio">
+							<label class="{{active}}">Precio</label>
+						</div>
+	      			</div>
+	    		</div>
+	    		<div class="modal-footer">
+	      			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+	      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="guardarinsumo()" ng-hide="editMode">Guardar</a>
+	      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-show="editMode" ng-click="modificar();">Actualizar</a>
+	    		</div>
+  			</div>
+  			<div id="modal2" class="modal">
+	    		<div class="modal-content">
+	      			<center><h5>{{title1}}</h5></center>
+	      			<div class="row">
+	      				<div class="input-field col s6">
+							<input type="text" maxlength="20" name="cantidad" value="{{cantidadpan}}" ng-model="precio.cantidad">
+							<label class="{{active}}">Cantidad</label>
+						</div>
+						<div class="input-field col s6">
+							<label class="active">Seleccione la bolsa</label>
+							<select class="browser-default" ng-model="precio.idbolsa">
+							    <option value="" disabled selected>Seleccione una opcion</option>
+							    <option ng-repeat="bolsa in arrayBolsa" value="{{bolsa.id}}">
+							    	{{bolsa.nombre}}
+							    </option>
+							</select>
+						</div>
+	      			</div>
+	    		</div>
+	    		<div class="modal-footer">
+	      			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+	      			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="updateprecio()">Guardar</a>
+	    		</div>
+  			</div>
+		</div>
+	</div>
+</div>

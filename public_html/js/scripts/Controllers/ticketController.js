@@ -7,6 +7,7 @@ app.controller('ticketController', function ($scope,ticketService) {
 	$scope.Ticket2 = {};
 	$scope.CurrentDate = new Date();
 	$scope.nit = "77.092.443-3";
+    $scope.Idticket = 0;
 
 	loadTickets();	
 
@@ -32,6 +33,42 @@ app.controller('ticketController', function ($scope,ticketService) {
 
     $scope.guardar = function(){
     	imprimir();
+    }
+
+    $scope.delete = function(ticket){
+        //alert(JSON.stringify(ticket);
+        $scope.Idticket = ticket.id;
+        $('#deleteticket').openModal();
+    }
+
+    $scope.borrar = function(){
+        var promiseGet = ticketService.deleteTickets($scope.Idticket); //The Method Call from service
+
+        promiseGet.then(function (pl) {
+            Materialize.toast(pl.data.message,2000,'rounded');
+            loadTickets();
+            $('#deleteticket').closeModal();
+        },
+        
+        function (errorPl) {
+            console.log('failure loading Tipo', errorPl);
+        });
+    }
+
+    $scope.bajar = function(index,producto){
+        var i = 1;
+        if(producto.cantidad <= 1){
+            Materialize.toast("El limite es 1",2000,'rounded');
+        }else{
+            $scope.Ticket[index].cantidad = producto.cantidad - 1;
+            $scope.Ticket[index].valor = $scope.Ticket[index].cantidad * $scope.Ticket[index].unitario;
+        }
+        
+    } 
+
+    $scope.subir = function(index,producto){
+        $scope.Ticket[index].cantidad = producto.cantidad + 1;
+        $scope.Ticket[index].valor = $scope.Ticket[index].cantidad * $scope.Ticket[index].unitario;
     }
 
     function imprimir () {

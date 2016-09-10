@@ -1,0 +1,6 @@
+[22-Aug-2016 16:56:01 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/database.php on line 29
+[22-Aug-2016 16:56:07 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/database.php on line 29
+[22-Aug-2016 16:56:22 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/database.php on line 29
+[22-Aug-2016 16:56:29 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/database.php on line 29
+[22-Aug-2016 16:56:34 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/app.php on line 16
+[22-Aug-2016 16:56:38 UTC] PHP Fatal error:  Call to undefined function env() in /home/artesano/public_html/config/services.php on line 18

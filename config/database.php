@@ -58,7 +58,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'artesano_database'),
             'username' => env('DB_USERNAME', 'artesano'),
-            'password' => env('DB_PASSWORD', 'FXf98EJEAt4'),
+            'password' => env('DB_PASSWORD', 'l1u2z3k4'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

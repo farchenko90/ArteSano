@@ -14,7 +14,7 @@ class InventarioController extends Controller
     public function inventario_usuario($id){
         return Inventario::select('inventario.*','producto.nombre','producto.valor','producto.imagen','producto.valor')
                     ->join('producto','producto.id','=','inventario.idproducto')
-                    ->where('idusuario','=',$id)
+                    ->where('inventario.idusuario','=',$id)
                     ->get();
     }
 

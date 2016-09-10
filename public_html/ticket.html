@@ -101,6 +101,7 @@
 									<th>Forma De Pago</th>
 									<th>Usuario</th>
 									<th>Imprimir</th>
+									<th>Eliminar Ticket</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -120,11 +121,31 @@
 											</a>
 										</span>
 									</td>
+									<td>
+										<span>
+											<a href="" ng-click="delete(ticket)">
+												<i class="material-icons prefix">clear</i>
+											</a>
+										</span>
+									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div id="deleteticket" class="modal">
+			<div class="modal-content">
+	  			<center><h4>Eliminar Ticket</h4></center>
+	  			<div class="row">
+	  				<center><h6>Esta Seguro De Eliminar Este Ticket?</h6></center>
+	  			</div>
+			</div>
+			<div class="modal-footer">
+	  			<a href="" class="modal-action modal-close waves-effect waves-light btn red" style="margin-left: 5px;">Salir</a>
+	  			<a href="javascript:;" class="waves-effect waves-light btn green" ng-click="borrar()">Eliminar</a>
 			</div>
 		</div>
 
@@ -139,6 +160,7 @@
 								<th>Cantidad</th>
 								<th>Valor Unitario</th>
 								<th>Valor Total</th>
+								<!--<th>Opciones</th>-->
 							</tr>
 						</thead>
 						<tbody>
@@ -147,6 +169,14 @@
 								<td>{{ticket.cantidad}}</td>
 								<td>{{ticket.unitario}}</td>
 								<td>{{ticket.valor}}</td>
+								<!--<td>
+									<a href="javascript:;" ng-click="bajar($index,ticket)">
+										<i class="material-icons prefix">arrow_downward</i>
+									</a>
+									<a href="javascript:;" ng-click="subir($index,ticket)">
+										<i class="material-icons prefix">arrow_upward</i>
+									</a>
+								</td>-->
 							</tr>
 						</tbody>
 	  				</table>

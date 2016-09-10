@@ -23,6 +23,8 @@
 	
 	<script type="text/javascript" src="js/jquery-2.1.1.js"></script>    
 
+  <script type="text/javascript" src="js/chart.min.js"></script>
+
 	<script type="text/javascript" src="js/plugins.js"></script>
 	<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
   <script src="js/select2.min.js" type="text/javascript"></script>
@@ -55,6 +57,8 @@
     <script src="js/scripts/Controllers/inventarioController.js" type="text/javascript"></script>
     <script src="js/scripts/Controllers/consultadetalleController.js"></script>
     <script src="js/scripts/Controllers/consultacierreControlle.js"></script>
+    <script src="js/scripts/Controllers/insumoController.js"></script>
+    <script src="js/scripts/Controllers/bolsaController.js"></script>
     <script src="js/scripts/appUsuario.js" type="text/javascript"></script>
 
 	<script>
@@ -70,6 +74,7 @@
 	<script src="js/scripts/Services/configuracionService.js" type="text/javascript"></script>
 	<script src="js/scripts/Services/cajaService.js" type="text/javascript"></script>
   <script src="js/scripts/Services/inventarioService.js" type="text/javascript"></script>
+  <script src="js/scripts/Services/insumoService.js" type="text/javascript"></script>
 
     <!--materialize js-->
 	<script type="text/javascript" src="js/materialize.min.js"></script>
@@ -212,7 +217,7 @@
       						<p class="font-menu letra-blanca">Ventas</p>
       					</a>
       				</li>
-      				<li class="lis-top">
+                    <li class="lis-top">
       					<a href="javascript:#" class="collapsible-header waves-teal font-menu" style="font-size: 18px; color: #ffffff;">
       						Consultas
       						<i class="material-icons prefix letra-blanca">book</i>
@@ -240,12 +245,13 @@
                                 <li>
                                     <a href="#consulta/cierre_caja" class="font-menu" style="font-size: 16px; color: #ffffff;">
                                         <i class="material-icons prefix letra-blanca">restaurant</i>
-                                        Consulta Cierre Caja
+                                        Con. Cierre Caja
                                     </a>
                                 </li>
       						</ul>
       					</div>
       				</li>
+                    
       				<li class="lis-top">
       					<a href="javascript:#" class="collapsible-header waves-teal">
       						<i class="material-icons prefix letra-blanca">settings</i>
@@ -262,6 +268,28 @@
       						</ul>
       					</div>
       				</li>
+                    <li class="lis-top" >
+                        <a href="javascript:#" class="collapsible-header waves-teal font-menu" style="font-size: 18px; color: #ffffff;text-align: left;">
+                            Insumos
+                            <i class="material-icons prefix letra-blanca">kitchen</i>
+                        </a>
+                        <div class="collapsible-body" style="background-color: #1f263d;">
+                            <ul>
+                                <li>
+                                    <a href="#insumos" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Registrar Insumos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#bolsas" class="font-menu" style="font-size: 16px; color: #ffffff;">
+                                        <i class="material-icons prefix letra-blanca">restaurant</i>
+                                        Registrar Bolsas
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
       				<li class="lis-top">
       					<a href="#" class="collapsible-header waves-teal" onclick="session.cerrarSesion();">
       						<i class="Small material-icons prefix letra-blanca">exit_to_app</i>

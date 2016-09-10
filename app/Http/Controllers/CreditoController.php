@@ -187,4 +187,17 @@ class CreditoController extends Controller
         return $credito;
     }
 
+    public function destroy($id){
+        try{
+
+            $venta = DB::select(DB::raw("Delete venta.* from venta where idcredito = ".$id));
+
+            $credito = Credito::find($id);
+            $credito->delete();
+            return JsonResponse::create(array('message' => "Credito Eliminado Correctamente", "request" =>json_encode($id)), 200);
+        }catch (Exception $ex) {
+            return JsonResponse::create(array('message' => "No se pudo Eliminar el país", "exception"=>$ex->getMessage(), "request" =>json_encode($id)), 401);
+        }
+    }
+
 }

@@ -16,6 +16,7 @@
 	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCDwrkQK7vNJy2Eji3gBIH_i969nhlVZX0&signed_in=true" type="text/javascript"></script>
 	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Josefin+Sans" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 
 	<script type="text/javascript" src="public_html/js/jquery-2.1.1.js"></script> 
 
@@ -155,17 +156,84 @@
 		<!-- modal del mapa -->
 		<div class="row">
 			<div class="col s12 m8 l4">
-				<div id="modal1" class="modal">	
+				<div id="modal1" class="modal" style="width: 45%;">	
 					<div class="modal-content" style="background-color: #4CAF50;">
 						<a class="btn-floating btn-flat green modal-icon modal-close">
 							<div class="icon-preview">
 								<i class="material-icons" style="padding-left: 7px;">clear</i>
 							</div>
 						</a>
-						<center><h5 class="letra-blanca">Encuentranos En</h5></center>	
+						<center><h5 class="letra-blanca"><p style="font-family: 'Oswald', sans-serif;">ArteSano Novalito</p></h5></center>	
 					</div>
-					<div class="modal-content">
-						<img src="public_html/images/newartesano.jpg" width="150">
+					<div>
+						<div class="row" style="margin-top: 10px">
+							<div class="col s12 m8 l6">
+								<img class="z-depth-1 responsive-img" src="public_html/images/artesanonovalito.jpg" height="250" width="350" >
+							</div>
+							<div class="col s12 m8 l5">
+								<span>
+									<i class="material-icons">location_on</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -30px;margin-left: 30px">Calle 13 No 6-81 Diagonal al parque Novalito
+									</p>
+								</span></br>
+								<span>
+									<i class="material-icons">phone</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -30px;margin-left: 30px">5808118
+									</p>
+								</span></br>
+								<span>
+									<i class="material-icons">stay_current_portrait</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -20px;margin-top: -30px;margin-left: 30px"">3045855827
+									</p>
+								</span>
+								
+							</div>
+						</div>
+						
+					</div>
+					<!--<div class="modal-footer">
+					
+					</div>-->
+				</div>
+			</div>
+		</div>
+
+		<!-- modal del mapa -->
+		<div class="row">
+			<div class="col s12 m8 l4">
+				<div id="modalunicentro" class="modal" style="width: 45%;">	
+					<div class="modal-content" style="background-color: #4CAF50;">
+						<a class="btn-floating btn-flat green modal-icon modal-close">
+							<div class="icon-preview">
+								<i class="material-icons" style="padding-left: 7px;">clear</i>
+							</div>
+						</a>
+						<center><h5 class="letra-blanca"><p style="font-family: 'Oswald', sans-serif;">ArteSano Unicentro</p></h5></center>	
+					</div>
+					<div>
+						<div class="row" style="margin-top: 10px">
+							<div class="col s12 m8 l6">
+								<img class="z-depth-1 responsive-img" src="public_html/images/unicentroarte.jpg" height="250" width="350" >
+							</div>
+							<div class="col s12 m8 l5">
+								<span>
+									<i class="material-icons">location_on</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -30px;margin-left: 30px">Cra. 9 #62
+									</p>
+								</span></br>
+								<span>
+									<i class="material-icons">business</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -30px;margin-left: 30px">Centro Comercial Unicentro #334
+									</p>
+								</span></br>
+								<span>
+									<i class="material-icons">phone</i>
+									<p style="font-family: 'Oswald', sans-serif;margin-top: -30px;margin-left: 30px">5725430
+									</p>
+								</span>
+							</div>
+						</div>
+						
 					</div>
 					<!--<div class="modal-footer">
 					
@@ -445,6 +513,7 @@
 
 	var map;
 	var pos = {lat: 10.4808009, lng: -73.2485051};
+	var unicentro = {lat: 10.4881063, lng: -73.2615234}
 	var icon = 'public_html/images/gps.png';
 	function initMap() {
 
@@ -487,8 +556,19 @@
 			animation: google.maps.Animation.DROP
 		});
 
+		var markerunicentro = new google.maps.Marker({
+			position: unicentro,
+			map: map,
+			icon: icon,
+			animation: google.maps.Animation.DROP
+		});
+
 		marker.addListener('click', function() {
     		$('#modal1').openModal();
+  		});
+
+  		markerunicentro.addListener('click', function() {
+    		$('#modalunicentro').openModal();
   		});
 
   		//var infoWindow = new google.maps.InfoWindow({map: map});

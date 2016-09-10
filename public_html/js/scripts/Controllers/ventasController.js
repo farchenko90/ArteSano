@@ -445,6 +445,15 @@ app.controller('ventasController', function ($scope,ventasService) {
         }
     }
 
+    $scope.modalgratis = function(){
+        if($scope.total == 0){
+            Materialize.toast("No se ha agregado ningun producto",2000,'rounded');
+        }else{
+            $scope.title = "Gratis";
+            $('#modalgratis').openModal();
+        }
+    }
+
     $scope.cinco = function(){
         $scope.ingreso = 500;
         $scope.credito += $scope.ingreso;
@@ -624,6 +633,52 @@ app.controller('ventasController', function ($scope,ventasService) {
                 console.log(err);
             });
         
+    }
+
+    $scope.gratis = function(){
+        //alert(JSON.stringify($scope.arrayVentas));
+        for(var i=0;i<$scope.arrayVentas.length;i++){
+            var object = {
+                id:  $scope.arrayVentas[i].idproducto,
+                cantidad: $scope.arrayVentas[i].cantidad,
+                productos: $scope.arrayVentas[i].producto,
+                valor: $scope.arrayVentas[i].subtotal,
+                cantidad: $scope.arrayVentas[i].cantidad
+            }
+            $scope.produ.push(object);
+        }
+        //alert(JSON.stringify($scope.produ));
+        var object = {
+            total:              0,
+            ingreso:            0,
+            cambio:             0,
+            formapago:          "GRATIS",
+            idusuario:          $scope.Idusuario,
+            producto:           $scope.produ
+        };
+        
+        var promisePost = ventasService.postcredito(object);
+            
+            promisePost.then(function (d) {
+                setTimeout( function  () {
+                    imprimir();
+                    $('#modalcambio').closeModal();
+                },500);
+                
+            }, function (err) {
+                
+                if(err.status == 401){
+                    alert(err.data.message);
+                    console.log(err.data.exception);
+                    
+                }else{
+                    
+                    alert("Error Al procesar Solicitud");
+                    
+                }
+
+                console.log(err);
+            });
     }
 
     function imprimir () {
